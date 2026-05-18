@@ -1,4 +1,4 @@
-categories: ["cs.CV", "cs.CL", "cs.AI", "cs.NE", "cs.LG", "cs.DS","cs.GT","cs.CE"]
+categories: ["cs.AI", "cs.CL", "cs.NE", "cs.LG","cs.GT", "cs.CE", "cs.DS"]
 keywords:
   - "open vocabulary"
   - "open-vocabulary"
