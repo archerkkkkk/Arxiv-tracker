@@ -45,7 +45,7 @@ email:
 llm:
   provider: "openai-compatible"     # 兼容 OpenAI SDK 的服务
   # 硅基流动的版本
-  base_url: "https://api.bltcy.top.com"
+  base_url: "https://api.bltcy.ai"
   model: "gpt-5.4-mini"
   api_key_env: "OPENAI_COMPAT_API_KEY"
   # Deepseek的版本
