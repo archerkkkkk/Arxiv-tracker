@@ -1,12 +1,12 @@
 categories: ["cs.AI", "cs.CL", "cs.NE", "cs.LG", "cs.DS"]
 keywords:
-  - "bin packing"
   - "agent"
   - "large language model"
   - "combinatorial optimization"
   - "automated algorithm design"
   - "LLM reasoning"
   - "reinforcement learning"
+  - "bin packing"
 # exclude_keywords: # 选择排除的关键词
 #   - "Large Language Model"
 #   - "LLM"
