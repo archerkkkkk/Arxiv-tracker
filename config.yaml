@@ -50,7 +50,7 @@ llm:
   # Deepseek的版本
   # base_url: "https://api.deepseek.com"
   # model: "deepseek-v4-flash"
-  # api_key_env: "sk-9ff54dd0fae74859b79c51b8b324a8f3"
+  # api_key_env: "sk-xxxx"
   
 
   system_prompt_en: |
