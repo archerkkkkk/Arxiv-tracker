@@ -1,12 +1,8 @@
 categories: ["cs.AI", "cs.CL", "cs.NE", "cs.LG", "cs.DS"]
 keywords:
-  - "large language model"
-  - "automated heuristic design"
-  - "bin packing probelm"
-  - "AI for Science"
-  - "AI automated research"
-  - "multi-agents system"
-  - "skills optimization"
+  - "Automated heuristics design"
+  - "LLM AHD"
+  - "AHD"
   - "loop engineer"
 # exclude_keywords: # 选择排除的关键词
 #   - "Large Language Model"
