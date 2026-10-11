@@ -1,0 +1,1035 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>arXiv 论文速递</title><style>
+:root {
+  --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --muted:#667085; --border:#e5e7eb; --acc:#2563eb;
+}
+:root[data-theme="dark"] {
+  --bg:#0b0f17; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --border:#1f2937; --acc:#2563eb;
+}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6;}
+.container{max-width:900px;margin:0 auto;padding:18px;}
+.header{display:flex;gap:10px;justify-content:space-between;align-items:center;margin:8px 0 16px;flex-wrap:wrap}
+h1{font-size:22px;margin:0}
+.badge{font-size:12px;color:#111827;background:var(--acc);padding:2px 8px;border-radius:999px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 18px;margin:14px 0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.title{font-weight:700;margin:0 0 6px 0;font-size:18px}
+.meta-line{color:var(--muted);font-size:13px;margin:2px 0}
+.links a{color:var(--acc);text-decoration:none;margin-right:12px}
+.detail{margin-top:10px;background:rgba(2,6,23,.03);border:1px solid var(--border);border-radius:10px;padding:8px 10px}
+summary{cursor:pointer;color:var(--acc)}
+.mono{white-space:pre-wrap;background:rgba(2,6,23,.03);border:1px solid var(--border);padding:10px;border-radius:10px}
+.row{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width: 860px) {
+  .row-2{grid-template-columns:1fr 1fr}
+}
+.footer{color:var(--muted);font-size:13px;margin:20px 0 10px}
+.hr{height:1px;background:var(--border);margin:14px 0}
+.history-list a{display:block;color:var(--acc);text-decoration:none;margin:4px 0}
+.controls{display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--border);background:var(--card);padding:6px 10px;border-radius:10px;cursor:pointer;color:var(--text)}
+.btn:hover{border-color:var(--acc)}
+</style>
+<script>
+(function() {
+  const root = document.documentElement;
+  function apply(t) {
+    if (t==='dark') root.setAttribute('data-theme','dark');
+    else if (t==='light') root.removeAttribute('data-theme');
+    else {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        root.setAttribute('data-theme','dark');
+      else root.removeAttribute('data-theme');
+    }
+  }
+  let t = localStorage.getItem('theme') || 'light';
+  if (!['light','dark','auto'].includes(t)) t='light';
+  apply(t);
+  window.__toggleTheme = function() {
+    let cur = localStorage.getItem('theme') || 'light';
+    if (cur==='light') cur='dark';
+    else if (cur==='dark') cur='auto';
+    else cur='light';
+    localStorage.setItem('theme', cur);
+    apply(cur);
+    const el=document.getElementById('theme-label');
+    if(el) el.textContent = cur.toUpperCase();
+  }
+  window.__expandAll = function(open) {
+    document.querySelectorAll('details').forEach(d => d.open = !!open);
+  }
+})();
+</script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>arXiv 论文速递</h1>
+      <div style="display:flex;gap:10px;align-items:center">
+        
+<div class="controls">
+  <button class="btn" onclick="__toggleTheme()">Theme: <span id="theme-label" style="margin-left:6px">AUTO</span></button>
+  <button class="btn" onclick="__expandAll(true)">Expand All</button>
+  <button class="btn" onclick="__expandAll(false)">Collapse All</button>
+</div>
+
+        <span class="badge">2026-10-12 05:49</span>
+      </div>
+    </div>
+    <div class="hr"></div>
+    <div>Snapshot: 20261012_0549</div>
+    <div class="row"><div class="card">
+<div class="title">Multi-Task Evolution for Zero-Shot Cross-Problem Generalization using LLMs</div>
+<div class="meta-line">Authors: Zhuoliang Xie, Changliang Zhou, Genghui Li, Zhenkun Wang</div>
+<div class="meta-line">First: 2026-10-02T13:53:34+00:00 · Latest: 2026-10-08T14:01:07+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.03316v2">Abs</a> · <a href="https://arxiv.org/pdf/2610.03316v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Designing effective heuristics for diverse combinatorial optimization problems requires substantial expertise and repeated search. Large language models (LLMs) automate heuristic generation and refinement, but heuristic search typically depends on evaluation feedback from the problem being optimized. Generalizing to new problem definitions using only source-task feedback therefore remains a central challenge. We introduce MECo, an LLM-driven multi-task evolutionary framework for zero-shot cross-problem generalization. MECo maintains task-conditioned heuristic populations and uses a transfer gap based on cross-task population performance to guide their interactions. These interactions enable the transfer and recombination of heuristics. A complementary selection criterion then constructs a compact heuristic set by rewarding each member&#x27;s additional coverage of source combinations. The selected set is applied to target problems without further search or adaptation. Experiments on 32 problem variants across vehicle routing (VRP) and flexible job-shop scheduling (FJSP) show that MECo achieves the lowest mean costs compared with eight automated heuristic design (AHD) baselines under the same budgets. On out-of-domain problems, it outperforms the strongest baseline in each family. Moreover, integrating the framework of MECo with different AHD methods improves their ID and OOD performance in both families, supporting its effectiveness across different methods.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>基于 LLM 的多任务进化实现零样本跨问题泛化</div>
+<div class="mono" style="margin-top:8px">为多样化组合优化问题设计有效启发式方法需要大量专业知识和反复搜索。大型语言模型（LLMs）可自动生成并改进启发式方法，但启发式搜索通常依赖于来自目标优化问题的评估反馈。因此，仅利用源任务反馈泛化到新的问题定义，仍是核心挑战。我们提出 MECo：一种由 LLM 驱动、用于零样本跨问题泛化的多任务进化框架。MECo 维护任务条件化的启发式种群，并使用基于跨任务种群性能的迁移差距来指导其交互。这些交互促进了启发式的迁移与重组。随后，一个互补的选择准则通过奖励每个成员对源组合的额外覆盖，构建紧凑的启发式集合。所选集合无需进一步搜索或适应即可应用于目标问题。在车辆路径问题（VRP）和柔性作业车间调度（FJSP）的 32 个问题变体上，实验表明，在相同预算下，与 8 个自动化启发式设计（AHD）基线相比，MECo 取得了最低的平均成本。在域外问题上，它也优于各家族中最强的基线。此外，将 MECo 的框架与不同 AHD 方法结合，可同时提升它们在两类问题上的 ID 和 OOD 性能，证明了其跨不同方法的有效性。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper addresses the difficulty of designing heuristics for many combinatorial optimization problems when only source-task feedback is available and the goal is to generalize to unseen problem definitions. It proposes MECo, an LLM-driven multi-task evolutionary framework that keeps task-conditioned heuristic populations, uses a cross-task transfer-gap signal to guide heuristic transfer and recombination, and then selects a compact heuristic set based on additional coverage of source combinations before applying it to target problems without further adaptation. Experiments on 32 variants of vehicle routing and flexible job-shop scheduling show that MECo achieves the lowest mean costs against eight automated heuristic design baselines under equal budgets, performs best among baselines on out-of-domain problems, and also improves in-domain and out-of-domain performance when integrated with other AHD methods.</div>
+<div class="mono" style="margin-top:8px">该研究针对多种组合优化问题的启发式规则设计需要大量专家经验、且难以仅依靠源任务反馈迁移到新问题定义这一困难，提出了MECo，一种由大语言模型驱动的多任务进化框架。该方法维护任务条件化的启发式种群，利用基于跨任务种群表现差异的迁移间隙来引导启发式的交互、传递与重组，并通过奖励对源任务组合新增覆盖的准则选择一个紧凑的启发式集合，随后直接用于目标问题而无需进一步搜索或适应。32个车辆路径规划和柔性作业车间调度变体上的实验表明，在相同预算下，MECo相较8个自动启发式设计基线取得最低平均代价；在域外问题上也优于各家族中最强基线；此外，将MECo框架与不同AHD方法结合还能同时提升它们在域内和域外的性能。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Dependable AI-Assisted Engineering: A Formal Framework for AI Participation and Assurance in Safety-Critical Workflows</div>
+<div class="meta-line">Authors: Puxue Tan</div>
+<div class="meta-line">First: 2026-10-02T21:46:50+00:00 · Latest: 2026-10-02T21:46:50+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.04084v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.04084v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Generative AI can produce engineering artefacts, but generation alone does not determine whether or how those artefacts should enter safety-critical workflows. This paper develops a formal framework for assigning AI participation and assurance at the level of individual workflow units. Each unit has a participation and assurance record covering its engineering requirement, an approved operational formalization where applicable, the applicable mechanism, fallback where applicable, evidence obligations and the applicable guarantee, plus a deployment-readiness status. The framework distinguishes deterministic verification, statistically calibrated admission, authorized human judgement supported by AI advice, authorized human adjudication of AI-produced artefacts, retained deterministic tool paths and explicit non-participation; these arrangements carry different kinds of guarantee rather than levels on a common scale. The framework also separates formalization fidelity from verifier soundness, provides a staged classification and readiness procedure, and derives conditions for comparing a gated AI-assisted unit with an incumbent process under recurring-population assumptions. We instantiate and apply the framework in an executed 17-unit wing-spar structural-analysis workflow combining deterministically gated AI-generated CAD, retained deterministic computation and human judgement. The AI-generated CAD program passed all 23 deterministic checks and was admitted at the first attempt. Favourable stress magnitudes did not suffice to pass the stress criteria where the predeclared mesh-convergence evidence was insufficient; those criteria were instead referred to engineering judgement. The case demonstrates selective AI participation and explicit evidence handling at unit level; no claim is made of workflow-level dependability, certification, structural safety or productivity.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>可信赖的 AI 辅助工程：面向安全关键工作流中 AI 参与与保证的形式化框架</div>
+<div class="mono" style="margin-top:8px">生成式 AI 可以生成工程工件，但仅凭生成并不能决定这些工件是否、以及如何进入安全关键工作流。本文提出一个形式化框架，用于在单个工作流单元层面分配 AI 参与与保证。每个单元都有一份参与与保证记录，涵盖其工程需求、适用时经批准的操作形式化、适用机制、适用时的回退方案、证据义务及相应保证，以及部署就绪状态。该框架区分了确定性验证、统计校准的准入、由 AI 建议支持的授权人类判断、对 AI 生成工件的授权人类裁决、保留的确定性工具路径和显式不参与；这些安排携带的是不同类型的保证，而不是同一尺度上的不同等级。该框架还将形式化保真度与验证者健全性相分离，提供分阶段分类与就绪流程，并在重复总体假设下，推导出比较带门控的 AI 辅助单元与现有流程的条件。我们在一个已执行的 17 单元翼梁结构分析工作流中实例化并应用了该框架，该工作流结合了确定性门控的 AI 生成 CAD、保留的确定性计算和人类判断。AI 生成的 CAD 程序通过了全部 23 项确定性检查，并在首次尝试时被准入。尽管应力幅值有利，但由于预先声明的网格收敛证据不足，仍不足以满足应力准则；这些准则随后被提交给工程判断。该案例展示了单元级的选择性 AI 参与和显式证据处理；并未声称工作流层面的可信赖性、认证、结构安全性或生产率。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper addresses the problem that generative AI can create engineering artefacts, but that alone does not show how such artefacts should be admitted into safety-critical workflows. It proposes a formal framework that records AI participation and assurance for each workflow unit, distinguishing deterministic verification, statistically calibrated admission, human judgement with AI support, human adjudication of AI outputs, retained deterministic tool paths, and non-participation, together with evidence obligations and deployment-readiness status. The framework is instantiated in a 17-unit wing-spar structural-analysis workflow combining AI-generated CAD, deterministic computation, and human judgement; the AI-generated CAD passed all 23 deterministic checks and was admitted on the first attempt, while stress criteria could not be satisfied because mesh-convergence evidence was insufficient and were instead referred to engineering judgement.</div>
+<div class="mono" style="margin-top:8px">该论文针对生成式AI可以产出工程工件、但其是否适合进入安全关键流程仍不明确这一问题，提出了一个在单个工作单元层面分配AI参与与保证的形式化框架。框架为每个单元记录工程需求、经批准的操作形式化、适用机制、必要时的回退方案、证据义务、对应保证以及部署就绪状态，并区分了确定性验证、统计校准准入、带AI建议的人类判断、对AI生成工件的人类裁决、保留的确定性工具路径和明确不参与等不同安排。作者将该框架应用于一个已执行的17单元翼梁结构分析流程，结合了受门控的AI生成CAD、确定性计算和人工判断。案例中，AI生成的CAD程序通过了全部23项确定性检查并首次获准进入流程，但由于预先声明的网格收敛证据不足，相关应力准则未能直接通过而转交工程判断；结果表明该框架支持单元级的选择性AI参与和显式证据处理，但并未声称流程级的可信性、认证、结构安全或生产率。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">AdaEva: Accelerating LLM-Driven Algorithm Design with Adaptive Partial Evaluation</div>
+<div class="meta-line">Authors: Tai Nguyen, Fei Liu, Phong Le, Carola Doerr, Nguyen Dang</div>
+<div class="meta-line">First: 2026-10-02T18:10:23+00:00 · Latest: 2026-10-02T18:10:23+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.03896v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.03896v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large Language Models (LLMs) are increasingly used for automated algorithm design. However the computational cost of evaluating the generated algorithms can be excessive. We consider the common LLM-driven automated algorithm design (LLM4AD) setting in which a candidate algorithm is evaluated by aggregating its performance over a shared set of training instances. This instance-wise structure raises a natural question: must every candidate be evaluated on the entire instance set before deciding whether it remains competitive? Taking inspiration from algorithm configuration, we introduce AdaEva, a drop-in adaptive partial-evaluation framework that progressively evaluates candidates on larger subsets of the same instance pool and eliminates unpromising candidates as evidence accumulates. Importantly, AdaEva leaves the underlying LLM4AD procedure and per-instance evaluator unchanged and requires no prior knowledge about instance difficulty. We instantiate this idea using successive halving (AdaEva-S) and statistical racing (AdaEva-R), and evaluate both mechanisms across three representative LLM4AD frameworks, multiple LLM backbones, and optimization domains spanning combinatorial and continuous black-box optimization. Under matched evaluation budgets, AdaEva more reliably balances evaluation effort across candidates than fixed partial-evaluation strategies, yielding strong search efficiency and anytime performance together with improved held-out generalization across the evaluated settings.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>AdaEva：利用自适应部分评估加速 LLM 驱动的算法设计</div>
+<div class="mono" style="margin-top:8px">大语言模型（LLMs）正日益用于自动化算法设计。然而，对生成算法进行评估的计算成本可能过高。我们考虑常见的 LLM 驱动自动化算法设计（LLM4AD）设置，其中候选算法通过在共享的训练实例集合上汇总其性能来进行评估。这种按实例的结构引出一个自然问题：在决定某个候选是否仍具竞争力之前，是否必须在整个实例集上评估每个候选？受算法配置（algorithm configuration）的启发，我们提出 AdaEva，一种可直接插入的自适应部分评估框架，它在同一实例池的更大子集上逐步评估候选，并在证据不断累积时淘汰缺乏前景的候选。重要的是，AdaEva 不改变底层的 LLM4AD 过程和逐实例评估器，且不需要预先了解实例难度。我们使用 successive halving（AdaEva-S）和 statistical racing（AdaEva-R）实现这一思想，并在三种具有代表性的 LLM4AD 框架、多个 LLM backbone，以及涵盖组合优化和连续黑盒优化的优化领域上评估这两种机制。在匹配的评估预算下，与固定部分评估策略相比，AdaEva 更可靠地在候选之间平衡评估开销，从而在所评估的设置中同时获得较强的搜索效率和 anytime 性能，并提升留出集泛化能力。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper addresses the high computational cost of evaluating LLM-generated algorithms in automated algorithm design, where candidates are often scored over a shared set of training instances. It proposes AdaEva, a drop-in adaptive partial-evaluation framework that progressively evaluates candidates on larger subsets of the same instance pool and prunes weak candidates as evidence accumulates, without changing the underlying LLM4AD procedure, the per-instance evaluator, or requiring prior knowledge of instance difficulty. The method is instantiated with successive halving (AdaEva-S) and statistical racing (AdaEva-R), and experiments across three LLM4AD frameworks, multiple LLM backbones, and both combinatorial and continuous black-box optimization tasks show that, under matched budgets, AdaEva allocates evaluation effort more effectively than fixed partial-evaluation baselines, improving search efficiency, anytime performance, and held-out generalization.</div>
+<div class="mono" style="margin-top:8px">本文针对LLM驱动的自动算法设计中候选算法评估代价过高的问题，研究如何在共享训练实例集上更高效地筛选候选算法。作者提出AdaEva这一可直接替换的自适应部分评估框架，它会逐步在同一实例池的更大子集上评估候选，并在证据累积后提前淘汰表现不佳者，同时保持原有LLM4AD流程和单实例评估器不变；文中进一步实现了基于 successive halving 的AdaEva-S和基于 statistical racing 的AdaEva-R。实验覆盖三种代表性的LLM4AD框架、多种LLM骨干模型，以及组合优化和连续黑盒优化任务，结果表明在相同评估预算下，AdaEva相比固定部分评估策略能更均衡地分配评估资源，从而带来更好的搜索效率、即时性能和留出集泛化表现。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">TRACE: Tackling Real-World Resource Assignment Problems via Agentic Heuristic Design</div>
+<div class="meta-line">Authors: Jose A. Ayala-Romero, Andres Garcia-Saavedra, Xavier Costa-Perez</div>
+<div class="meta-line">First: 2026-10-01T15:38:04+00:00 · Latest: 2026-10-01T15:38:04+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.01887v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.01887v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Dynamic resource assignment, the real-time allocation of task streams to heterogeneous processing nodes, is the backbone of modern computing infrastructure. While learning-based schedulers excel in research, industrial deployments still rely on hand-written rules that operators can read, audit, and execute within tight latency budgets. LLM-based Automatic Heuristic Design (AHD) promises to automate writing such rules. However, existing AHD frameworks were developed for combinatorial problems fully specified to the LLM, and they learn only from a scalar fitness score. In real systems, the behaviour that determines a good heuristic, such as processor speeds or power consumption, is unknown a priori: the score reveals which heuristic performs better, but not why. This missing information is recorded in the system logs that every evaluation produces. Exploiting it is non-trivial: logs are massive and noisy, the relevant signals depend on the objective, and their content and format vary across hardware and software stacks, so they can neither be fed to an LLM as is nor processed by a fixed parser. We propose TRACE, which couples an evolutionary AHD loop with an agentic knowledge-extraction workflow. A Reasoner agent analyzes the log schema in light of the objective and formulates hypotheses about the system dynamics; a Coder agent writes and executes schema-specific code to test them, producing insights or executable tools for the evolved heuristics. We evaluate TRACE on a synthetic cloud benchmark and a 5G vRAN scenario built from industrial testbed measurements and operational traffic traces. TRACE consistently outperforms state-of-the-art AHD methods in resource assignment problems and yields more auditable heuristics at under 2% overhead.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>TRACE：通过智能体式启发式设计解决真实世界资源分配问题</div>
+<div class="mono" style="margin-top:8px">动态资源分配，即将任务流实时分配到异构处理节点，是现代计算基础设施的支柱。尽管基于学习的调度器在研究中表现出色，工业部署仍依赖可由操作员读取、审计并在严格延迟预算内执行的手写规则。基于 LLM 的自动启发式设计（Automatic Heuristic Design, AHD）有望自动化编写此类规则。然而，现有 AHD 框架是为完全向 LLM 指定的组合优化问题开发的，并且只从一个标量适应度得分中学习。在真实系统中，决定优良启发式的行为，例如处理器速度或功耗，事先并未知晓：得分只能揭示哪个启发式更优，却不能说明原因。此类缺失信息记录在每次评估都会产生的系统日志中。利用这些日志并非易事：日志规模庞大且噪声多，相关信号依赖于优化目标，其内容和格式随硬件与软件栈而变化，因此既不能直接输入 LLM，也不能由固定解析器处理。我们提出 TRACE，将进化式 AHD 循环与智能体式知识提取工作流相结合。Reasoner 智能体结合目标分析日志模式，并提出关于系统动力学的假设；Coder 智能体编写并执行特定于模式的代码来检验这些假设，从而为进化出的启发式生成洞见或可执行工具。我们在一个合成云基准和一个基于工业测试床测量与运行流量轨迹构建的 5G vRAN 场景上评估 TRACE。TRACE 在资源分配问题上始终优于最先进的 AHD 方法，并以低于 2% 的开销生成了更具可审计性的启发式。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper addresses real-world dynamic resource assignment, where industrial schedulers need readable and low-latency heuristics but existing automatic heuristic design methods rely mainly on a scalar fitness score and cannot use informative system logs. TRACE combines an evolutionary heuristic-design loop with an agentic workflow for log analysis: a Reasoner agent infers likely system dynamics from the log schema and objective, and a Coder agent generates schema-specific code to test hypotheses and produce insights or tools for the evolving heuristics. Experiments on a synthetic cloud benchmark and a 5G vRAN testbed show that TRACE consistently outperforms state-of-the-art AHD methods and produces more auditable heuristics with under 2% overhead.</div>
+<div class="mono" style="margin-top:8px">TRACE针对真实系统中的动态资源分配问题，这类问题需要可读、可审计且满足严格时延要求的启发式规则，但现有自动启发式设计方法通常只依赖标量适应度，无法利用解释规则效果的系统日志。该方法将进化式启发式设计循环与智能体式知识提取流程结合起来：Reasoner代理根据目标分析日志模式并提出系统动力学假设，Coder代理编写并执行与日志模式相匹配的代码来验证假设，并为进化出的启发式生成洞见或可执行工具。作者在合成云基准和基于工业测试床测量与运营流量轨迹构建的5G vRAN场景上进行了评估，结果表明TRACE在资源分配问题上持续优于现有最先进的自动启发式设计方法，同时能以低于2%的开销生成更具可审计性的启发式规则。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">SimpleEvol: An Agent-Loop Framework for LLM-Driven Automated Heuristic Design with Minimal Human Priors</div>
+<div class="meta-line">Authors: Jianghan Zhu, Cong Zhang, Rongjie Zhu, Chi Zhang, Zhiguang Cao</div>
+<div class="meta-line">Venue: NeurIPS 2026</div>
+<div class="meta-line">First: 2026-09-29T09:58:01+00:00 · Latest: 2026-09-30T16:15:31+00:00</div>
+<div class="meta-line">Comments: Accepted at NeurIPS 2026. 47 pages, 13 figures</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.37172v2">Abs</a> · <a href="https://arxiv.org/pdf/2609.37172v2">PDF</a> · <a href="https://github.com/HenryZhu1029/SimpleEvol-Master">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language models (LLMs) have emerged as powerful tools for automated heuristic design (AHD), enabling iterative generation and refinement of heuristics. However, the dominant paradigm embeds LLMs as narrow, fixed components, such as crossover or mutation, within heavily hand-engineered evolutionary frameworks. We argue this misapprehends LLMs. It treats them as specialized tools rather than general reasoners, constrains them to low-level operations, and underutilizes their autonomy. Moreover, the extensive human priors in these frameworks violate the bitter lesson principle that general methods scaling with computation surpass hand-crafted solutions. This raises a key question: which AHD framework designs best convert stronger LLM capabilities into better heuristics? To address this, we propose metrics for LLM-driven AHD framework handcraftedness (AHI) and intelligence conversion efficiency (ICE). Evaluating ten LLMs across three challenging combinatorial optimization problems, we obtain a notable finding that frameworks with fewer human priors consistently yield higher ICE. Based on this finding, we propose SimpleEvol, an agent-loop framework for AHD which removes nearly all human priors and allows the LLM to operate autonomously. SimpleEvol consistently achieves the highest ICE, often by a large margin. Our results challenge the trend toward complex AHD pipelines and point to a lighter and more model-centric alternative, suggesting that reducing human priors is a more effective strategy to scale up with model intelligence. The source code is available at https://github.com/HenryZhu1029/SimpleEvol-Master.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>SimpleEvol：一种用于基于 LLM 的自动化启发式设计的 agent-loop 框架，且人类先验极少</div>
+<div class="mono" style="margin-top:8px">大型语言模型（LLMs）已成为自动化启发式设计（AHD）的强大工具，能够迭代生成并改进启发式方法。然而，主流范式将 LLM 作为狭窄、固定的组件，如交叉或变异，嵌入到高度手工设计的进化框架中。我们认为这误解了 LLM：它把 LLM 当作专用工具而非通用推理器，限制其执行低层操作，并且未能充分发挥其自主性。此外，这些框架中大量的人类先验违背了“苦涩教训”原则，即随着计算规模扩展的通用方法优于手工构造的解决方案。这引出一个关键问题：哪种 AHD 框架设计最能将更强的 LLM 能力转化为更优的启发式？为此，我们提出了用于 LLM 驱动 AHD 框架手工化程度（AHI）和智能转换效率（ICE）的度量。我们在三类具有挑战性的组合优化问题上评估了十种 LLM，得到一个显著发现：人类先验更少的框架始终具有更高的 ICE。基于这一发现，我们提出 SimpleEvol，一种用于 AHD 的 agent-loop 框架，几乎移除了所有人类先验，并允许 LLM 自主运行。SimpleEvol 始终取得最高的 ICE，且通常优势显著。我们的结果挑战了复杂 AHD 流水线的发展趋势，指向一种更轻量、以模型为中心的替代方案，并表明减少人类先验是随模型智能扩展的更有效策略。源代码见 https://github.com/HenryZhu1029/SimpleEvol-Master。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper is motivated by the observation that existing LLM-based automated heuristic design systems often confine LLMs to narrow roles inside heavily engineered evolutionary pipelines, leaving little autonomy and relying on many human-designed priors. To address this, the authors define two metrics, handcraftedness (AHI) and intelligence conversion efficiency (ICE), then propose SimpleEvol, an agent-loop framework that removes nearly all human priors and lets the LLM iteratively design and refine heuristics on its own. Experiments with ten LLMs on three challenging combinatorial optimization problems show that frameworks with fewer human priors consistently achieve higher ICE, and SimpleEvol attains the highest ICE, often by a large margin.</div>
+<div class="mono" style="margin-top:8px">本文的动机在于：现有基于LLM的自动启发式设计方法通常把LLM限制为进化框架中的固定低层操作模块，依赖大量人工先验，既削弱了模型自主性，也不符合“少人工先验、随算力扩展”的原则。为此，作者提出了两个指标：手工设计程度（AHI）和智能转换效率（ICE），并在三个具有挑战性的组合优化问题上评估了十种LLM。基于实验发现，人工先验更少的框架通常具有更高的ICE，作者进一步提出SimpleEvol，一种几乎去除全部人工先验、允许LLM自主迭代的agent-loop框架。实验结果表明，SimpleEvol在多数情况下取得最高ICE，并且优势明显，说明减少人工先验可能比构建复杂流水线更有效。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">From Search to Signal: Online Post-Training in Automatic Heuristic Design</div>
+<div class="meta-line">Authors: Yilun Yuan, Tianyu Zhou, Zhenzhou Tang</div>
+<div class="meta-line">First: 2026-09-30T09:33:10+00:00 · Latest: 2026-09-30T09:33:10+00:00</div>
+<div class="meta-line">Comments: 18 pages, including supplementary material. Preprint</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.39383v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.39383v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language model (LLM)-based automatic heuristic design (AHD) iteratively proposes and refines heuristics, pairing design rationales with executable code. Task-specific evaluators assess programs; execution outcomes and performance scores guide search. Many AHD systems keep the generator frozen; EvoTune and Co-Evolution of Algorithms and Language Model (CALM) instead update it from evaluated candidates. When such outcomes drive reinforcement learning with verifiable rewards (RLVR), they create a search-coupled loop: the evaluated candidate stream supplies both search-state updates and training signals for the model that generates future candidates. Yet validity and performance do not uniquely determine useful model updates; converting them into learning signals must account for the prompt and evolving search state that produced each candidate. We formulate online post-training of small open-weight LLMs in AHD as context-dependent signal construction and develop alternative mappings from program validity, task performance, and generation context to update signals. Using shared evaluated rollouts and matched update budgets, controlled experiments across AHD tasks and model families compare these mappings with online post-training baselines, testing their effects on validity, performance among valid proposals, and the yield of valid proposals that improve under contextual comparisons. Complementary checkpoint, frozen-search, and live-system evaluations assess whether proposal-level gains appear in updated checkpoint behavior and subsequent search, rather than arising solely from accumulated search state. A resource-matched comparison under pre-specified cost accounting tests whether online updating adds value beyond additional search with a frozen generator. Together, this design avoids treating end-to-end search gains alone as evidence of stronger heuristic-design capabilities.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>从搜索到信号：自动启发式设计中的在线后训练</div>
+<div class="mono" style="margin-top:8px">基于大型语言模型（LLM）的自动启发式设计（AHD）通过迭代提出并改进启发式，将设计理由与可执行代码配对。针对特定任务的评估器对程序进行评估；执行结果和性能分数引导搜索。许多 AHD 系统保持生成器冻结；而 EvoTune 和算法与语言模型协同进化（CALM）则根据已评估候选对其进行更新。当此类结果通过可验证奖励的强化学习（RLVR）驱动训练时，它们形成一个与搜索耦合的循环：被评估的候选流同时为搜索状态更新和生成未来候选的模型提供训练信号。然而，有效性和性能并不能唯一决定有用的模型更新；将它们转化为学习信号时，必须考虑产生每个候选的提示词及其不断演化的搜索状态。我们将小型开放权重 LLM 在 AHD 中的在线后训练表述为上下文相关的信号构造，并从程序有效性、任务性能和生成上下文出发，设计了多种映射到更新信号的方法。利用共享的已评估 rollout 和匹配的更新预算，在 AHD 任务与模型家族上进行受控实验，将这些映射与在线后训练基线进行比较，测试其对有效性、有效提案中的性能，以及在上下文比较下改进的有效提案产出的影响。互补的检查点、冻结搜索和在线系统评估进一步考察，提案层面的增益是否会体现在更新后检查点的行为及后续搜索中，而非仅仅源于累积的搜索状态。在预先规定的成本核算下，资源匹配的比较检验在线更新是否相较于使用冻结生成器进行额外搜索具有额外价值。综上，这一设计避免将端到端搜索收益本身误认为更强的启发式设计能力。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper studies online post-training for automatic heuristic design because in many LLM-based AHD systems, evaluated candidate programs are used not only to guide search but also to update the generator, and it is unclear how to turn validity and performance into useful learning signals. The authors formulate this as context-dependent signal construction and compare alternative mappings from program validity, task score, and generation context to update signals for small open-weight LLMs, using shared evaluated rollouts and matched update budgets. Across AHD tasks and model families, the experiments show that different mappings affect validity, performance among valid proposals, and the number of valid proposals that improve under contextual comparisons, while checkpoint, frozen-search, and live-system tests indicate that some apparent gains in search are not always reflected in updated checkpoints or future search behavior, and resource-matched comparisons test whether online updating adds value beyond extra frozen-generator search.</div>
+<div class="mono" style="margin-top:8px">本文关注自动启发式设计（AHD）中的在线后训练问题：许多系统会用已评估候选程序同时推进搜索并更新生成器，但程序有效性和任务得分并不必然构成有用的学习信号，因为它们还依赖提示词和不断变化的搜索上下文。作者将小型开源LLM在AHD中的在线后训练建模为与上下文相关的信号构造，并在共享的已评估轨迹和匹配的更新预算下，比较了基于程序有效性、任务表现以及生成上下文的不同更新映射。跨AHD任务和不同模型的对照实验表明，更新映射会显著影响候选的有效率、有效候选中的性能，以及在上下文比较下获得改进的有效候选比例；同时，检查点、冻结搜索和在线系统评估显示，一部分收益会体现在更新后的模型行为中，而不只是搜索状态累积的结果，此外还有按成本匹配的比较用来检验在线更新是否优于单纯增加冻结生成器的搜索。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Online Automated Algorithm Design with Large Language Models</div>
+<div class="meta-line">Authors: Zhiyao Zhang, Yichen Li, Xingyu Wu, Liang Feng, Kay Chen Tan</div>
+<div class="meta-line">First: 2026-09-21T19:15:19+00:00 · Latest: 2026-09-21T19:15:19+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.25325v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.25325v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language models (LLMs) enable automated algorithm design (AAD) through reasoning and code synthesis. However, most existing LLM-based AAD methods separate algorithm design from target optimization, deploying a fixed design even as the optimization state evolves. Conventional adaptive optimizers can respond to such changes, but their adjustments remain confined to predefined parameters, operators, or strategies. To address these limitations, we introduce online LLM-based AAD, a novel optimization paradigm that treats the algorithm itself as a state-dependent decision variable. At each stage, LLM agents synthesize an algorithm with new behavior logic from the current optimization state. Executing the generated algorithm advances the search and provides feedback for subsequent designs, coupling algorithm design with target optimization without requiring a separate offline algorithm pretraining stage. To implement this paradigm, we propose OnDesign, a multi-agent framework that reconciles competing design perspectives to synthesize executable algorithms and uses execution feedback to refine how runtime evidence is interpreted for subsequent designs. We evaluate OnDesign across two mainstream black-box optimization paradigms on three scenarios: Bayesian optimization, evolutionary continuous optimization, and evolutionary mixed-variable optimization. Extensive experiments on six benchmark suites and one engineering problem across multiple problem dimensions demonstrate superior overall performance over conventional optimizers and offline LLM-based AAD methods.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>基于大语言模型的在线自动化算法设计</div>
+<div class="mono" style="margin-top:8px">大语言模型（LLMs）通过推理和代码合成推动自动化算法设计（AAD）。然而，现有多数基于LLM的AAD方法将算法设计与目标优化分离，即便优化状态不断演化，仍部署固定算法。传统自适应优化器虽能响应此类变化，但其调整仍局限于预定义参数、算子或策略。为解决这些局限，我们提出在线LLM-based AAD，这是一种新颖的优化范式，将算法本身视为依赖状态的决策变量。在每个阶段，LLM智能体基于当前优化状态合成具有新行为逻辑的算法。执行生成的算法可推进搜索并为后续设计提供反馈，从而在无需独立的离线算法预训练阶段的情况下，将算法设计与目标优化耦合。为实现该范式，我们提出OnDesign，一个多智能体框架，用于协调相互竞争的设计视角以合成可执行算法，并利用执行反馈改进对运行时证据的解释方式，从而服务于后续设计。我们在三种场景下、两种主流黑盒优化范式上评估OnDesign：贝叶斯优化、进化连续优化和进化混合变量优化。基于六个基准套件和一个工程问题、覆盖多种问题维度的大量实验表明，OnDesign的整体性能优于传统优化器和离线LLM-based AAD方法。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper is motivated by the limitation of existing LLM-based automated algorithm design methods, which usually generate a fixed algorithm offline and cannot adapt the design as the optimization state changes. To address this, it proposes online LLM-based automated algorithm design, where the algorithm is treated as a state-dependent decision variable and LLM agents synthesize executable algorithms at each stage from the current optimization state. The authors implement this idea with OnDesign, a multi-agent framework that combines competing design perspectives and uses execution feedback to improve later designs, and experiments on Bayesian optimization, evolutionary continuous optimization, and evolutionary mixed-variable optimization show better overall performance than conventional optimizers and offline LLM-based AAD methods on six benchmark suites and one engineering problem.</div>
+<div class="mono" style="margin-top:8px">该研究的动机在于现有基于大语言模型的自动算法设计通常在离线阶段固定生成算法，无法随着优化状态变化而持续调整。作者提出在线LLM自动算法设计范式，将算法视为依赖当前状态的决策变量，并设计了OnDesign这一多智能体框架，从当前优化状态合成可执行算法，并利用执行反馈来改进后续设计。实验覆盖贝叶斯优化、进化连续优化和进化混合变量优化三类场景，在六个基准测试集和一个工程问题上均表明，OnDesign整体性能优于传统优化器和离线LLM自动算法设计方法。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">RouteRepair: Instance-Level Failure Diagnosis and Targeted Repair in LLM-Based Automated Heuristic Design for Routing Optimization</div>
+<div class="meta-line">Authors: Binghao Ji, Di Huang, Jiahui Fang, Zhiyuan Liu</div>
+<div class="meta-line">First: 2026-09-10T12:21:18+00:00 · Latest: 2026-09-10T12:21:18+00:00</div>
+<div class="meta-line">Comments: 22 pages, 13 figures, 11 tables</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.11452v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.11452v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Efficient routing optimization is essential to freight transportation, urban logistics, and shared mobility, where high-quality heuristics are often required under limited computational budgets. Recent large language model (LLM)-based automated heuristic design methods can generate effective routing rules, but aggregate evaluation may mask recurrent failures on particular instance structures. To address this limitation, this study develops RouteRepair, which diagnoses parent-specific weaknesses from instance-level performance and applies targeted modifications to the corresponding heuristic components while protecting behavior that already performs well. Routing evidence, solver behavior, and program context are combined to define bounded repair objectives, and each intervention is validated through matched parent-child evaluation of failure recovery and collateral degradation. Experiments on the traveling salesman problem (TSP) and capacitated vehicle routing problem (CVRP) span constructive search, guided local search, and ant colony optimization. RouteRepair-GLS reduces the mean TSP optimality gap from 1.7476% to 0.7587%, while the constructive CVRP heuristic lowers average route cost by 1.91% relative to the savings heuristic; the generated ACO priors also outperform matched hand-designed priors. These results show that failure-aware, evidence-constrained refinement can improve routing heuristics on difficult instances while preserving performance on cases they already solve well.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>RouteRepair：基于实例层面故障诊断与定向修复的LLM驱动自动化路由优化启发式设计</div>
+<div class="mono" style="margin-top:8px">高效的路由优化对于货运运输、城市物流和共享出行至关重要，且通常需要在有限计算预算下获得高质量启发式方法。近期基于大语言模型（LLM）的自动化启发式设计方法能够生成有效的路由规则，但总体评估可能掩盖在特定实例结构上反复出现的失败。为解决这一局限，本研究提出 RouteRepair：它依据实例级性能诊断父模型的特定弱点，并对相应启发式组件进行定向修改，同时保护已表现良好的行为。该方法结合路由证据、求解器行为和程序上下文来定义有界修复目标，并通过父-子配对评估验证每次干预在故障恢复与附带退化方面的效果。实验覆盖旅行商问题（TSP）和容量车辆路径问题（CVRP），涉及构造式搜索、引导式局部搜索和蚁群优化。RouteRepair-GLS 将 TSP 平均最优性差距从 1.7476% 降至 0.7587%；构造式 CVRP 启发式相较于 savings 启发式将平均路径成本降低 1.91%；生成的 ACO 先验也优于匹配的人工设计先验。结果表明，具备故障感知且受证据约束的细化方法，能够在保持已能良好求解实例性能的同时，提升路由启发式在困难实例上的表现。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper is motivated by the fact that LLM-based automated heuristic design for routing optimization is usually evaluated in aggregate, which can hide recurring failures on specific instance structures. It proposes RouteRepair, an instance-level diagnosis and repair framework that identifies parent-specific weaknesses from performance traces, routing evidence, solver behavior, and program context, then applies bounded edits to the corresponding heuristic components while checking matched parent-child recovery and collateral damage. Experiments on TSP and CVRP across constructive search, guided local search, and ant colony optimization show consistent gains: RouteRepair-GLS reduces the mean TSP optimality gap from 1.7476% to 0.7587%, the constructive CVRP heuristic lowers average route cost by 1.91% versus the savings heuristic, and the generated ACO priors outperform matched hand-designed priors.</div>
+<div class="mono" style="margin-top:8px">面向路由优化的LLM自动启发式设计虽然整体上可能有效，但按实例汇总的评估会掩盖某些特定结构上的重复失败。RouteRepair通过分析实例级性能来诊断父程序的薄弱环节，并在结合路由证据、求解器行为和程序上下文的约束下，对对应启发式组件进行定向修改，同时尽量保留原本表现良好的行为；每次修复都通过父子程序配对评估来检查失败恢复与副作用。作者在TSP和CVRP上，结合构造式搜索、引导局部搜索和蚁群优化进行实验，结果表明该方法能稳定提升性能，例如RouteRepair-GLS将TSP平均最优性差距从1.7476%降至0.7587%，构造式CVRP启发式相较于savings heuristic将平均路径成本降低1.91%，生成的ACO先验也优于对应的人工设计先验。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">OR-Agent: Bridging Evolutionary Search and Structured Research for Automated Heuristic Design</div>
+<div class="meta-line">Authors: Qi Liu, Ruochen Hao, Can Li, Wanjing Ma</div>
+<div class="meta-line">First: 2026-02-14T13:32:03+00:00 · Latest: 2026-09-04T02:55:55+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2602.13769v4">Abs</a> · <a href="https://arxiv.org/pdf/2602.13769v4">PDF</a> · <a href="https://github.com/qiliuchn/OR-Agent">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Automating heuristic design in complex, experiment-driven domains requires more than iterative mutation of solution algorithms. Current LLM-based evolutionary methods often rely on stochastic mutation loops that lack long-term strategic planning and a formal mechanism to learn from historical failures, leading to inefficient exploration and redundant trials. To address this, we present OR-Agent, a multi-agent research framework designed for automated heuristic design in optimization problems with rich experimental environments. OR-Agent organizes heuristic search as tree-based workflow that explicitly models branching hypothesis generation and systematic backtracking. Furthermore, to address the lack of adaptive learning in current agents, we introduce a hierarchical, optimization-inspired reflection system in which short-term reflections act as verbal gradients, long-term reflections as verbal momentum, and memory compression as semantic weight decay - collectively forming a principled mechanism for governing research dynamics. Extensive experiments on classical combinatorial optimization problems (e.g., TSP, CVRP, bin packing) and simulation-based cooperative driving scenarios demonstrate that OR-Agent outperforms strong evolutionary search baselines. All code and experimental data are publicly available at https://github.com/qiliuchn/OR-Agent.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>OR-Agent：连接进化搜索与结构化研究的自动启发式设计框架</div>
+<div class="mono" style="margin-top:8px">在复杂、以实验为驱动的领域中自动化启发式设计，不仅需要对解算法进行迭代式变异。当前基于 LLM 的进化方法往往依赖缺乏长期战略规划和从历史失败中学习的正式机制的随机变异循环，导致探索效率低下且试验冗余。为此，我们提出 OR-Agent，这是一个面向优化问题、具有丰富实验环境的自动化启发式设计多智能体研究框架。OR-Agent 将启发式搜索组织为基于树的工作流，显式建模分支式假设生成与系统性回溯。此外，针对当前智能体缺乏自适应学习的问题，我们引入一种分层的、受优化启发的反思系统，其中短期反思充当 verbal gradients，长期反思充当 verbal momentum，记忆压缩充当 semantic weight decay——共同形成一种用于调控研究动态的原则性机制。大量在经典组合优化问题（如 TSP、CVRP、装箱问题）以及基于仿真的协同驾驶场景上的实验表明，OR-Agent 优于强基线进化搜索方法。全部代码和实验数据已公开于 https://github.com/qiliuchn/OR-Agent。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Automating heuristic design in complex optimization settings is difficult because existing LLM-based evolutionary methods often depend on random mutation loops that do not support long-term planning or systematic learning from past failures. OR-Agent addresses this by framing heuristic search as a tree-based multi-agent workflow with explicit hypothesis branching and backtracking, and by adding a hierarchical reflection mechanism where short-term reflections serve as verbal gradients, long-term reflections as verbal momentum, and memory compression acts as semantic weight decay. Experiments on TSP, CVRP, bin packing, and simulation-based cooperative driving show that OR-Agent outperforms strong evolutionary search baselines.</div>
+<div class="mono" style="margin-top:8px">该论文针对基于大语言模型的进化式启发式设计存在的局限，即主要依赖随机变异循环，缺乏长期规划以及从历史失败中学习的机制。作者提出OR-Agent，一个多智能体框架，将启发式搜索组织为树状工作流，显式建模分支式假设生成与系统性回溯，并引入分层反思机制，其中短期反思对应语言形式的梯度，长期反思对应语言形式的动量，记忆压缩对应语义权重衰减。实验覆盖TSP、CVRP、装箱问题等经典组合优化任务以及基于仿真的协同驾驶场景，结果表明OR-Agent优于强基线进化搜索方法。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">MeEvo: Metacognitive Evolution Combined with Natural Evolution for Automatic Heuristic Design</div>
+<div class="meta-line">Authors: Zishang Qiu, Xinan Chen, Rong Qu, Ruibin Bai</div>
+<div class="meta-line">First: 2026-06-12T07:36:38+00:00 · Latest: 2026-09-03T03:46:54+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2606.14202v5">Abs</a> · <a href="https://arxiv.org/pdf/2606.14202v5">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large Language Models (LLMs) have advanced Automatic Heuristic Design (AHD) by enabling heuristic generation through reasoning and code synthesis. In LLM-based AHD, the LLM reasons about algorithm design and generates executable heuristic code. Existing architectures adopt two main paradigms: Natural Evolution applies crossover and mutation to this code to explore diverse strategies, but discards the reasoning traces behind the design decisions, weakening knowledge retention; Metacognitive Evolution retains these reasoning traces and refines them through reflection, but lacks population-level recombination, limiting exploration. These limitations reduce search efficiency, stability, and solution quality on complex problems. To address this gap, we propose MeEvo, an AHD framework that cyclically couples Natural Evolution and Metacognitive Evolution with operator balance that shifts from exploration to exploitation. Natural Evolution explores heuristic code while recording LLM-generated reasoning traces, fitness values, errors and best heuristic into a shared history; Metacognitive Evolution then reflects on this history to generate improved heuristics that feed into the next Natural Evolution cycle. This design enables population-driven exploration and reflection-driven refinement to reinforce each other. Experiments on five optimization problems show that MeEvo achieves stronger performance and lower variance than tested LLM-based AHD architectures, especially on complex constrained tasks.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>MeEvo：将元认知进化与自然进化相结合的自动启发式设计</div>
+<div class="mono" style="margin-top:8px">大语言模型（LLMs）通过推理与代码合成推进了自动启发式设计（AHD），使其能够生成启发式方法。在基于 LLM 的 AHD 中，LLM 对算法设计进行推理并生成可执行的启发式代码。现有架构采用两种主要范式：自然进化对该代码进行交叉和变异以探索多样化策略，但会丢弃设计决策背后的推理轨迹，从而削弱知识保留；元认知进化保留这些推理轨迹并通过反思加以改进，但缺乏种群级重组，限制了探索。这些局限降低了复杂问题上的搜索效率、稳定性和解质量。为解决这一缺口，我们提出 MeEvo，这是一种将自然进化与元认知进化周期性耦合的 AHD 框架，并通过算子平衡实现从探索到利用的转变。自然进化在探索启发式代码的同时，将 LLM 生成的推理轨迹、适应度值、错误以及最优启发式记录到共享历史中；随后，元认知进化基于这些历史进行反思，生成改进后的启发式，并将其输入下一轮自然进化。该设计使基于种群的探索与基于反思的改进相互强化。在五个优化问题上的实验表明，MeEvo 的性能优于所测试的基于 LLM 的 AHD 架构且方差更低，尤其在复杂约束任务上表现突出。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper addresses a limitation in LLM-based automatic heuristic design: natural evolution can explore diverse heuristic code but loses the LLM’s reasoning traces, while metacognitive evolution preserves those traces but lacks population-level recombination. To combine both strengths, it proposes MeEvo, a framework that alternates Natural Evolution and Metacognitive Evolution with an operator balance shifting from exploration to exploitation, storing reasoning traces, fitness values, errors, and the best heuristic in a shared history for iterative refinement. Experiments on five optimization problems show that MeEvo outperforms the compared LLM-based AHD methods and has lower variance, with particularly strong gains on complex constrained tasks.</div>
+<div class="mono" style="margin-top:8px">本文针对基于大语言模型的自动启发式设计中两类机制的局限：自然进化能通过交叉和变异探索代码，但会丢失推理轨迹；元认知进化能保留并反思推理轨迹，但缺少种群级重组，因而影响搜索效率与稳定性。作者提出MeEvo框架，将自然进化与元认知进化周期性耦合，并通过算子平衡实现从探索到利用的切换；自然进化阶段记录推理轨迹、适应度、错误和最佳启发式到共享历史中，元认知进化再基于这些历史生成改进后的启发式并进入下一轮循环。五个优化问题上的实验表明，MeEvo相比已有LLM-based AHD架构取得了更强的性能和更低的方差，尤其在复杂约束任务上优势更明显。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Large Language Models and Evolutionary Computation: A Critical Review of Bidirectional Interaction, Automated Algorithm Design, and Co-Adaptive Systems</div>
+<div class="meta-line">Authors: Dikshit Chauhan, Bapi Dutta, Indu Bala, Niki van Stein, Thomas Bäck, Anupam Yadav</div>
+<div class="meta-line">Venue: Computer Science Review, Volume 63, Part A, 2027</div>
+<div class="meta-line">First: 2025-05-21T16:48:28+00:00 · Latest: 2026-08-29T04:41:08+00:00</div>
+<div class="meta-line">Comments: 40 pages</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2505.15741v3">Abs</a> · <a href="https://arxiv.org/pdf/2505.15741v3">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large Language Models (LLMs) and Evolutionary Computation (EC) are increasingly being combined to support automated optimization, algorithm design, and adaptive decision-making. This survey reviews the bidirectional interaction between these two paradigms and examines how their complementary strengths can be leveraged in hybrid intelligent systems. First, we analyze how EC can enhance LLM-based systems through prompt optimization, hyperparameter tuning, and architecture search. Second, we review how LLMs can im- prove EC by supporting metaheuristic design, surrogate reasoning, adaptive operator control, and heuristic generation. We further discuss emerging co-adaptive frameworks in which LLMs and EC interact through iterative feedback loops. Beyond summarizing recent developments, the survey provides a structured perspec- tive on interaction mechanisms, application patterns, and methodological challenges, including computational cost, reproducibility, interpretability, benchmarking, and generalization. The paper concludes by outlining open research questions and future directions for developing more robust, transparent, and scalable LLM-EC systems.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>大语言模型与进化计算：双向交互、自动化算法设计与共适应系统的批判性综述</div>
+<div class="mono" style="margin-top:8px">大语言模型（LLMs）与进化计算（EC）正日益结合，以支持自动化优化、算法设计和自适应决策。本文综述这两种范式之间的双向交互，并探讨如何在混合智能系统中利用其互补优势。首先，分析EC如何通过提示优化、超参数调优和架构搜索增强基于LLM的系统。其次，综述LLM如何通过支持元启发式设计、代理推理、自适应算子控制和启发式生成来改进EC。进一步讨论LLM与EC通过迭代反馈回路交互的新兴共适应框架。除总结近期进展外，本文还就交互机制、应用模式和方法学挑战提供了结构化视角，包括计算成本、可复现性、可解释性、基准测试和泛化能力。最后概述开放研究问题与未来方向，以推动更稳健、透明且可扩展的LLM-EC系统发展。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This survey is motivated by the growing use of large language models and evolutionary computation together for optimization, algorithm design, and adaptive decision-making. It reviews bidirectional interactions between the two paradigms, including EC-assisted prompt optimization, hyperparameter tuning, and architecture search for LLM systems, as well as LLM-assisted metaheuristic design, surrogate reasoning, adaptive operator control, and heuristic generation for EC. Rather than reporting new experiments, the paper synthesizes recent studies and evaluates the field’s current state, highlighting recurring challenges such as computational cost, reproducibility, interpretability, benchmarking, and generalization, and it argues that co-adaptive feedback-loop systems remain a key direction for future work.</div>
+<div class="mono" style="margin-top:8px">这篇综述的动机是总结大型语言模型（LLMs）与进化计算（EC）结合的研究进展，因为两者在自动优化、算法设计和自适应决策方面具有互补优势。论文系统回顾了双向交互机制，包括利用EC改进LLM系统中的提示优化、超参数调优和架构搜索，以及利用LLM支持EC中的元启发式设计、代理推理、自适应算子控制和启发式生成，并进一步讨论了基于迭代反馈的协同自适应框架。该文不是提出新算法，而是对近期工作进行结构化归纳，指出计算成本、可复现性、可解释性、基准评测和泛化能力等关键挑战，并提出了未来发展方向。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">ES-AHD: An Evolution Strategy Framework for Automatic Heuristic Design</div>
+<div class="meta-line">Authors: Yutao Lai, Kezhao Lai, Hai-Lin Liu, Yuping Wang, Ping Guo</div>
+<div class="meta-line">First: 2026-08-26T06:43:31+00:00 · Latest: 2026-08-26T06:43:31+00:00</div>
+<div class="meta-line">Comments: Accepted by ICIST 2026</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.00023v1">Abs</a> · <a href="https://arxiv.org/pdf/2609.00023v1">PDF</a> · <a href="https://github.com/Mriya0306/ES-AHD">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">In this paper, we introduce ES-AHD, a novel framework that fundamentally integrates Evolution Strategy (ES) into Large Language Model (LLM)-driven Automatic Heuristic Design (AHD). Existing evolutionary approaches predominantly rely on random, individual-level mutation, leading to blind search and an imbalance between exploration and exploitation. To address these issues, ES-AHD introduces two core mechanisms. First, Semantic Recombination via LLMs discards traditional point-to-point reproduction. By leveraging the LLM&#x27;s contextual reasoning to explicitly extract core insights from top-performing individuals, the algorithm establishes a promising semantic search direction. This transforms random code mutation into targeted, center-guided sampling inspired by ES. Second, Stochastic Covariance Adaptation via Temperature Sampling dynamically addresses the exploration-exploitation dilemma. By mapping the covariance matrix in ES to the LLM&#x27;s sampling temperature, the framework employs a stochastic random walk mechanism with momentum. This approach primarily shrinks the search radius for micro-level code refinement, while retaining the critical ability to occasionally sample higher temperatures to escape semantic local optima. Ultimately, ES-AHD provides a highly directional, robust, and efficient search paradigm, significantly accelerating the generation of high-quality heuristic algorithms. The source code is available at: https://github.com/Mriya0306/ES-AHD.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>ES-AHD：一种用于自动启发式设计的进化策略框架</div>
+<div class="mono" style="margin-top:8px">本文提出 ES-AHD，这是一种将进化策略（ES）从根本上集成到大型语言模型（LLM）驱动的自动启发式设计（AHD）中的新框架。现有进化方法主要依赖随机的个体级变异，导致盲目搜索以及探索与开发之间的不平衡。为解决这些问题，ES-AHD 引入了两个核心机制。首先，基于 LLM 的语义重组摒弃了传统的一对一复制。通过利用 LLM 的上下文推理能力从表现最佳的个体中显式提取核心洞见，该算法建立了一个有前景的语义搜索方向。这将随机代码变异转变为受 ES 启发的、以中心为引导的定向采样。其次，基于温度采样的随机协方差自适应动态缓解探索—开发两难。通过将 ES 中的协方差矩阵映射到 LLM 的采样温度，该框架采用带动量的随机游走机制。该方法主要收缩用于微观代码细化的搜索半径，同时保留偶尔采样更高温度以逃离语义局部最优的关键能力。最终，ES-AHD 提供了一种高度定向、鲁棒且高效的搜索范式，显著加速高质量启发式算法的生成。源代码见：https://github.com/Mriya0306/ES-AHD。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper addresses the limitations of existing LLM-based automatic heuristic design methods, which often depend on random individual-level mutation and therefore suffer from blind search and a poor balance between exploration and exploitation. ES-AHD incorporates Evolution Strategy into AHD through two mechanisms: semantic recombination, which uses LLMs to extract and combine core insights from top-performing individuals for center-guided sampling, and stochastic covariance adaptation, which maps ES-style covariance control to LLM sampling temperature to refine code locally while occasionally increasing temperature to escape local optima. The abstract reports that this framework yields a more directional and robust search process that significantly accelerates the generation of high-quality heuristic algorithms.</div>
+<div class="mono" style="margin-top:8px">本文针对现有基于大语言模型的自动启发式设计方法过度依赖随机个体级变异、容易导致搜索盲目且探索与利用失衡的问题，提出了ES-AHD框架，将进化策略引入AHD。该方法通过基于LLM的语义重组从高质量个体中提取核心思想，形成中心引导的采样方向，并利用温度采样实现随机协方差自适应，在缩小局部代码微调搜索范围的同时保留跳出语义局部最优的能力。摘要表明，该框架能够提供更具方向性和效率的搜索过程，并显著加速高质量启发式算法的生成。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">ATLAS: Scaffold-Free Algorithm Synthesis by LLMs via Embedding-Guided Quality-Diversity Search</div>
+<div class="meta-line">Authors: Danial Yazdani, Mohammad Nabi Omidvar, Yuan Sun, Maksud Ibrahimov, Xiaodong Li</div>
+<div class="meta-line">First: 2026-08-16T05:43:34+00:00 · Latest: 2026-08-18T07:41:35+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2608.15546v2">Abs</a> · <a href="https://arxiv.org/pdf/2608.15546v2">PDF</a> · <a href="https://github.com/Danial-Yazdani/ATLAS">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Most LLM-based automated algorithm design methods optimize a designated component within a human-specified scaffold, fixing overall organization and component interactions. We present ATLAS, an embedding-guided quality-diversity framework for scaffold-free full-algorithm synthesis in combinatorial optimization. The problem specification supplies objectives and constraints; a minimal I/O interface fixes only instance and solution formats; the LLM chooses and restructures components, interactions, and control flow. This freedom enlarges the search space, risking invalid candidates and premature convergence to one design region. ATLAS independently detects execution, interface, and feasibility failures, recomputes objectives, and applies error-conditioned repair; similarity-based archive management preserves algorithms across embedding-space regions to counter premature convergence. Its three-layer search refines the best design, gives other regions dedicated refinement opportunities, and performs cross-region synthesis to recombine components and their interactions. Across four NP-hard problems, ATLAS outperforms several state-of-the-art component-synthesis methods and a matched full-synthesis baseline while remaining competitive with strong human-designed algorithms. One ATLAS run retains several algorithms with comparable performance from distinct embedding-space regions rather than a single design. Code inspection finds that these multi-component designs differ in their primary construction or global-search backbone. Our results suggest that embedding-guided quality-diversity search can make the enlarged full-algorithm design space practically searchable. Source code and exact executable prompts are available at https://github.com/Danial-Yazdani/ATLAS .</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>ATLAS：通过 LLM 基于嵌入引导的质量-多样性搜索实现无骨架算法综合</div>
+<div class="mono" style="margin-top:8px">大多数基于 LLM 的自动算法设计方法只是在人工指定的骨架内优化某个指定组件，固定了整体组织结构和组件交互。我们提出 ATLAS，一种用于组合优化中无骨架完整算法综合的嵌入引导质量-多样性框架。问题定义提供目标和约束；最小化 I/O 接口仅固定实例与解的格式；LLM 负责选择并重构组件、交互方式和控制流。这种自由度扩大了搜索空间，带来无效候选和过早收敛到单一设计区域的风险。ATLAS 可独立检测执行、接口和可行性失败，重新计算目标，并应用错误条件修复；基于相似度的归档管理在嵌入空间不同区域保留算法，以对抗过早收敛。其三层搜索机制会细化最佳设计，为其他区域提供专门的细化机会，并进行跨区域综合以重组组件及其交互。在四个 NP-hard 问题上，ATLAS 优于若干当前最先进的组件综合方法和一个匹配的完整综合基线，同时与强人工设计算法保持竞争力。一次 ATLAS 运行会保留若干来自不同嵌入空间区域、性能相近的算法，而不是单一设计。代码检查发现，这些多组件设计在主要构造方法或全局搜索骨干上存在差异。我们的结果表明，嵌入引导的质量-多样性搜索可以使扩展后的完整算法设计空间在实践中可搜索。源代码和精确可执行提示见 https://github.com/Danial-Yazdani/ATLAS 。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper addresses the challenge that most LLM-based automated algorithm design methods only optimize parts of a fixed human-designed scaffold, whereas full algorithm synthesis creates a much larger search space with higher risk of invalid outputs and premature convergence. It proposes ATLAS, an embedding-guided quality-diversity framework in which the LLM works from only a problem specification and minimal I/O interface to choose components, interactions, and control flow, while the system detects execution, interface, and feasibility failures, performs error-conditioned repair, and uses similarity-based archive management and three-layer search to maintain and refine diverse candidate algorithms. Experiments on four NP-hard problems show that ATLAS outperforms several state-of-the-art component-synthesis methods and a matched full-synthesis baseline, and remains competitive with strong human-designed algorithms; the resulting archive preserves multiple comparably performing algorithms from different embedding-space regions.</div>
+<div class="mono" style="margin-top:8px">该论文针对以往基于LLM的自动算法设计通常只在固定骨架内优化局部组件的局限，研究在组合优化中进行无骨架的完整算法合成。作者提出ATLAS，一种基于嵌入引导的质量多样性搜索框架：在仅给定最小输入输出接口的条件下，由LLM自主设计组件、交互方式和控制流程，同时通过独立检测执行、接口和可行性错误、基于错误的修复以及按嵌入空间区域管理档案来缓解过早收敛，并用三层搜索分别细化优选设计、探索其他区域和进行跨区域重组。四个NP难问题上的实验表明，ATLAS优于多种先进的组件合成方法和匹配的全合成基线，并且与强的人类设计算法具有竞争力；单次运行中还能保留来自不同嵌入区域的多个性能相近的算法。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">AHD Agent: Agentic Reinforcement Learning for Automatic Heuristic Design</div>
+<div class="meta-line">Authors: Haoze Lv, Ning Lu, Ziang Zhou, Yew-Soon Ong, Shengcai Liu</div>
+<div class="meta-line">First: 2026-05-09T07:36:45+00:00 · Latest: 2026-08-13T03:34:24+00:00</div>
+<div class="meta-line">Comments: 8 pages, 7 figures for main content</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2605.08756v2">Abs</a> · <a href="https://arxiv.org/pdf/2605.08756v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Automatic heuristic design (AHD) has emerged as a promising paradigm for solving NP-hard combinatorial optimization problems (COPs). Recent works show that large language models (LLMs), when integrated into well-designed frameworks (i.e., LLM-AHD), can autonomously discover high-performing heuristics. However, existing LLM-AHD frameworks typically treat LLMs as passive generators within fixed workflows, where the model generates heuristics from manually designed, limited context. Such context may fail to capture state-dependent information (e.g., specific failure modes), leading to inefficient trial-and-error exploration. To overcome these limitations, we propose AHD Agent, a novel tool-integrated, multi-turn framework that empowers LLMs to proactively decide whether to generate heuristics or invoke tools to retrieve targeted evidence from the solving environment. To effectively train such a dynamic decision-making agent, we introduce an agentic reinforcement learning (RL) system, which leverages a novel environment synthesis pipeline to optimize a compact model&#x27;s generalizable AHD capabilities. Experiments across eight diverse domains, including four held-out tasks, demonstrate that our 4B-parameter agent matches or surpasses state-of-the-art baselines using much larger models, while requiring significantly fewer evaluations. Model and inference scaling analysis further reveals that AHD Agent offers an effective trajectory toward truly autonomous heuristic design.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>AHD Agent：用于自动启发式设计的智能体强化学习</div>
+<div class="mono" style="margin-top:8px">自动启发式设计（AHD）已成为求解 NP-hard 组合优化问题（COPs）的一个有前景范式。近期研究表明，当大型语言模型（LLMs）融入设计良好的框架（即 LLM-AHD）时，可以自主发现高性能启发式方法。然而，现有 LLM-AHD 框架通常将 LLM 视为固定工作流中的被动生成器，模型仅从人工设计的、有限的上下文中生成启发式方法。这类上下文可能无法捕捉状态相关信息（如特定失败模式），从而导致低效的试错式探索。为克服这些局限，我们提出 AHD Agent，这是一种新的工具集成、多轮框架，使 LLM 能够主动决定是生成启发式方法，还是调用工具从求解环境中检索针对性证据。为有效训练这种动态决策智能体，我们引入一种智能体强化学习（RL）系统，并利用一种新颖的环境合成流水线来优化紧凑模型的可泛化 AHD 能力。跨八个不同领域的实验（包括四个留出任务）表明，我们的 40 亿参数智能体在使用远大于其规模的模型的情况下，能够与最先进基线相当或更优，同时所需评估次数显著更少。模型与推理扩展分析进一步表明，AHD Agent 为真正自主的启发式设计提供了一条有效路径。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper addresses automatic heuristic design for NP-hard combinatorial optimization, noting that existing LLM-based AHD systems usually rely on passive generation from manually limited context and thus miss state-dependent evidence such as failure modes. To address this, it proposes AHD Agent, a tool-integrated multi-turn framework in which the LLM can choose between generating heuristics and querying tools for targeted information, and trains this behavior with an agentic reinforcement learning system supported by an environment synthesis pipeline. Experiments on eight domains, including four held-out tasks, show that a 4B-parameter agent matches or outperforms state-of-the-art baselines built with much larger models while using far fewer evaluations, and scaling analysis suggests the approach is a promising path toward autonomous heuristic design.</div>
+<div class="mono" style="margin-top:8px">该研究针对NP难组合优化问题中的自动启发式设计，指出现有基于大语言模型的方法通常把模型限制在固定流程中，仅依赖手工提供的有限上下文，难以及时获取与当前状态相关的失败模式等信息，从而导致低效的试错搜索。为此，作者提出AHD Agent，一个支持多轮交互且可调用工具的框架，使模型能够主动决定生成启发式规则还是检索环境中的定向证据，并通过基于环境合成管线的agentic强化学习来训练这种决策能力。实验覆盖八个不同领域，其中包括四个未见任务，结果表明该4B参数模型在显著减少评估次数的同时，性能达到或超过了使用更大模型的最新基线，模型与推理扩展分析也显示该方法有望推动更自主的启发式设计。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">ArchAgent v2: A Case Study with the Data Prefetching Championship</div>
+<div class="meta-line">Authors: Abraham Gonzalez, Raghav Gupta, Akanksha Jain, Hanna Alam, Alexander Novikov, Po-Sen Huang, Matej Balog, Marvin Eisenberger, Sergey Shirobokov, Ngân Vũ, Hank Levy, Borivoje Nikolić, Sagar Karandikar, Martin Dixon, Parthasarathy Ranganathan</div>
+<div class="meta-line">First: 2026-08-10T17:28:05+00:00 · Latest: 2026-08-10T17:28:05+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2608.09874v1">Abs</a> · <a href="https://arxiv.org/pdf/2608.09874v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Agentic artificial intelligence has shown great promise in automating algorithm design, but scaling similar techniques to computer microarchitecture discovery remains challenging due to vast search spaces, strict hardware budgets, and long simulation times. In this work, we present ArchAgent v2, a framework which scales automated microarchitecture search to multi-level data prefetching. While the original ArchAgent successfully discovered single-level cache replacement policies in competition settings, it does not scale to multi-level prefetching where the design space and degrees of freedom are larger. To overcome this, we introduce two new additions to ArchAgent: a cascaded evolutionary search that subdivides the design space by sequentially evolving and freezing prefetchers at individual cache levels, and a hardware-realizability feedback loop that embeds real-time size-estimation directly into the evolution process.
+  Evaluated under identical rules of the 4th Data Prefetching Championship (DPC4), ArchAgent v2 automatically designs a three-level prefetcher that outperforms the winning hand-designed solution, further demonstrating automated agentic discovery as a useful tool for computer architects. Our discovered policy achieves a 3.8\% geometric mean IPC speedup over the baseline overall and a 0.3\% improvement over the prior champion, BertiGO. On low-bandwidth single-core configurations, our policy yields a 4.6\% performance speedup compared to only 2.6\% for BertiGO. However, multi-core evolution still remains a significant challenge due to simulation latency impeding evolution speed. Finally, our profiling of an ArchAgent evolution of over 12,000 candidate designs provides key insights into how automated evolutionary agents explore and synthesize complex microarchitectural logic.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">ArchAgent v2 targets the difficulty of automating microarchitecture discovery for multi-level data prefetching, where the search space is much larger than in prior single-level cache replacement work and hardware budgets and simulation time are tight. The method extends ArchAgent with a cascaded evolutionary search that evolves and freezes prefetchers level by level, plus a hardware-realizability feedback loop that estimates size during evolution. Under the DPC4 rules, it discovers a three-level prefetcher that achieves a 3.8% geometric mean IPC speedup over the baseline and a 0.3% improvement over the previous champion BertiGO; on low-bandwidth single-core setups it improves performance by 4.6% versus 2.6% for BertiGO, though multi-core search remains limited by simulation latency.</div>
+<div class="mono" style="margin-top:8px">ArchAgent v2旨在将代理式自动化设计扩展到多级数据预取器，因为该任务具有搜索空间大、硬件预算严格以及仿真耗时长等挑战。该方法引入级联进化搜索，按缓存层级逐步进化并冻结预取器设计，同时加入硬件可实现性反馈回路，将实时尺寸估计嵌入进化过程。在DPC4相同规则下，系统自动设计出的三层预取器在总体上比基线获得3.8%的几何平均IPC提升，并比上一届冠军BertiGO高0.3%；在低带宽单核配置下提升达到4.6%，高于BertiGO的2.6%，但多核进化仍受仿真延迟影响。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Beyond the Node: Clade-level Selection for Efficient MCTS in Automatic Heuristic Design</div>
+<div class="meta-line">Authors: Kezhao Lai, Yutao Lai, Hai-Lin Liu</div>
+<div class="meta-line">First: 2026-01-31T06:26:23+00:00 · Latest: 2026-08-08T11:39:05+00:00</div>
+<div class="meta-line">Comments: v2 substantially expands the experimental evaluation with large-scale zero-shot benchmarks, broader baselines, and additional ablation and sensitivity analyses. Code: https://github.com/Mriya0306/Clade-AHD</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2602.00549v2">Abs</a> · <a href="https://arxiv.org/pdf/2602.00549v2">PDF</a> · <a href="https://github.com/Mriya0306/Clade-AHD">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">While Monte Carlo Tree Search (MCTS) shows promise in Large Language Model (LLM) based Automatic Heuristic Design (AHD), it suffers from a critical over-exploitation tendency under the limited computational budgets required for heuristic evaluation. To address this limitation, we propose Clade-AHD, an efficient framework that replaces node-level point estimates with clade-level Bayesian beliefs. By aggregating descendant evaluations into Beta distributions and performing Thompson Sampling over these beliefs, Clade-AHD explicitly models uncertainty to guide exploration, enabling more reliable decision-making under sparse and noisy evaluations. Extensive experiments on complex combinatorial optimization problems demonstrate that Clade-AHD consistently outperforms state-of-the-art methods while significantly reducing computational cost. The source code is publicly available at: https://github.com/Mriya0306/Clade-AHD.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>超越节点：用于自动启发式设计的高效 MCTS 的谱系级选择</div>
+<div class="mono" style="margin-top:8px">尽管 Monte Carlo Tree Search（MCTS）在基于 Large Language Model（LLM）的 Automatic Heuristic Design（AHD）中显示出潜力，但在启发式评估所需的有限计算预算下，它会出现严重的过度利用倾向。为解决这一局限，我们提出 Clade-AHD，这是一种高效框架，用谱系级 Bayesian beliefs 替代节点级点估计。通过将后代评估聚合为 Beta distributions，并在这些信念上执行 Thompson Sampling，Clade-AHD 显式建模不确定性以引导探索，从而在稀疏且噪声较大的评估下实现更可靠的决策。在复杂组合优化问题上的广泛实验表明，Clade-AHD 在显著降低计算成本的同时，始终优于当前最先进方法。源代码公开于：https://github.com/Mriya0306/Clade-AHD。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper addresses the over-exploitation problem of Monte Carlo Tree Search in LLM-based automatic heuristic design, which is especially problematic when heuristic evaluations are sparse, noisy, and computationally limited. It proposes Clade-AHD, which replaces node-level point estimates with clade-level Bayesian beliefs by aggregating descendant evaluations into Beta distributions and using Thompson Sampling to guide exploration. Experiments on complex combinatorial optimization problems show that Clade-AHD consistently outperforms state-of-the-art methods while using significantly less computation.</div>
+<div class="mono" style="margin-top:8px">本文针对基于大语言模型的自动启发式设计中，蒙特卡洛树搜索在启发式评估开销高、样本稀疏且噪声较大时容易过度利用的问题。作者提出Clade-AHD，用克隆级别的贝叶斯信念替代节点级点估计，将后代评估聚合为Beta分布，并通过Thompson Sampling在探索与利用之间进行权衡。复杂组合优化任务上的实验表明，Clade-AHD在显著降低计算成本的同时，整体性能持续优于现有最优方法。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">PACE: Primitive-Aware Code Evolution for Automated Algorithm Design</div>
+<div class="meta-line">Authors: Zhuoliang Xie, Ruihao Zheng, Xiang Xu, Genghui Li, Zhengkun Wang</div>
+<div class="meta-line">First: 2026-08-07T16:40:03+00:00 · Latest: 2026-08-07T16:40:03+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2608.07395v1">Abs</a> · <a href="https://arxiv.org/pdf/2608.07395v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large Language Model (LLM)-based automated algorithm design typically evolves algorithms as complete, indivisible programs. While this whole-program perspective simplifies the search space, it fundamentally couples the useful local logic to its host program. Consequently, valuable code snippets vanish when the overall program is discarded, making it highly difficult to assess the contribution of individual algorithmic components.To address this, we propose Primitive-Aware Code Evolution (PACE), which decouples local logic from complete programs by representing it as persistent units called Executable Algorithmic Primitives (EAPs). To enable code-level transfer, PACE maintains a dynamic set of EAPs. Algorithm evolution is driven by primitive-aware operators that structurally guarantee the retention and cross-program transfer of these components. To evaluate them effectively, PACE leverages Thompson sampling based on parent-relative performance improvements, guiding primitive selection from the set without requiring extra evaluation datasets. Experiments on four tasks demonstrate that PACE effectively discovers competitive algorithms while structurally preserving valuable algorithmic components.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>PACE：面向自动化算法设计的原语感知代码演化</div>
+<div class="mono" style="margin-top:8px">基于大语言模型（LLM）的自动化算法设计通常将算法作为完整、不可分割的程序进行演化。尽管这种整体程序视角简化了搜索空间，但它从根本上将有用的局部逻辑与其宿主程序耦合在一起。因此，当整体程序被舍弃时，有价值的代码片段也会消失，使得评估单个算法组件的贡献变得极其困难。为此，我们提出原语感知代码演化（PACE），通过将局部逻辑表示为称为可执行算法原语（Executable Algorithmic Primitives, EAPs）的持久单元，将其与完整程序解耦。为实现代码级迁移，PACE 维护一个动态的 EAP 集合。算法演化由原语感知算子驱动，这些算子在结构上保证这些组件的保留与跨程序迁移。为有效评估它们，PACE 利用基于相对父代性能提升的 Thompson sampling，从集合中引导原语选择，无需额外评估数据集。四个任务上的实验表明，PACE 能有效发现具有竞争力的算法，同时在结构上保留有价值的算法组件。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper is motivated by a limitation of LLM-based automated algorithm design, where evolution over whole programs makes useful local code hard to preserve or evaluate once a program is discarded. To address this, it proposes Primitive-Aware Code Evolution (PACE), which represents reusable local logic as persistent Executable Algorithmic Primitives (EAPs), maintains a dynamic set of these primitives, and uses primitive-aware evolutionary operators to keep and transfer them across programs. For primitive selection, PACE applies Thompson sampling based on parent-relative performance improvements without needing extra evaluation data. Experiments on four tasks show that PACE can discover competitive algorithms while structurally preserving valuable algorithmic components.</div>
+<div class="mono" style="margin-top:8px">本文针对基于大语言模型的自动算法设计主要以完整程序为单位进行演化的问题展开，这种方式会使有价值的局部逻辑在程序被淘汰后难以保留和评估。作者提出了 Primitive-Aware Code Evolution（PACE），将可复用代码表示为持久化的可执行算法原语（EAPs），维护动态原语集合，并通过原语感知的演化算子和基于相对父代性能提升的 Thompson 采样来选择原语，无需额外评测数据。四个任务上的实验表明，PACE 能发现具有竞争力的算法，同时在结构上保留并传递有价值的算法组件。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">MuEvo: LLM-Driven Evolution of Multi-Heuristic Ensemble</div>
+<div class="meta-line">Authors: Haoze Lv, Ning Lu, Shengcai Liu, Shaofeng Zhang, Ke Tang</div>
+<div class="meta-line">First: 2026-08-04T13:19:51+00:00 · Latest: 2026-08-04T13:19:51+00:00</div>
+<div class="meta-line">Comments: 30 pages, 4 figures, 16 tables</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2608.03636v1">Abs</a> · <a href="https://arxiv.org/pdf/2608.03636v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language model-based automated heuristic design (LLM-AHD) has shown strong potential in discovering effective heuristics for combinatorial optimization problems. However, existing methods primarily optimize a single heuristic, whereas practical optimization frameworks often rely on multiple interacting components. Directly extending single-heuristic methods is challenging because early component selection can overlook components with late potential, while independent evolution ignores inter-component dependencies. We propose MuEvo, an LLM-driven framework for evolving heuristic ensembles under ensemble-level feedback. MuEvo combines Dynamic Component Management, which uses short-budget probing and a reversible lifecycle to revise component priorities throughout the search, with LLM-Driven Co-Evolution, which coordinates component populations through Multi-Ensemble Evaluation, Cross-Component Information Sharing, Relation-Guided Pair Evolution, and Adaptive Budget Allocation. We evaluate MuEvo on selection hyper-heuristics and componentized ant colony optimization across four combinatorial optimization domains. Results show that MuEvo consistently improves human-designed frameworks and outperforms representative multi-component extensions of state-of-the-art LLM-AHD methods, demonstrating its effectiveness across both controller-mediated heuristic pools and functionally differentiated algorithmic components.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>MuEvo：LLM驱动的多启发式集成进化</div>
+<div class="mono" style="margin-top:8px">基于大语言模型的自动化启发式设计（LLM-AHD）在发现组合优化问题的有效启发式方法方面显示出强大潜力。然而，现有方法主要优化单一启发式，而实际优化框架通常依赖多个相互作用的组件。直接扩展单启发式方法具有挑战性，因为早期的组件选择可能忽略后期才显现潜力的组件，而独立进化又会忽视组件间依赖关系。我们提出 MuEvo，一个在集成层面反馈下进化启发式集成的 LLM 驱动框架。MuEvo 将动态组件管理与 LLM 驱动协同进化相结合：前者通过短预算探测和可逆生命周期在搜索过程中修订组件优先级；后者通过多集成评估、跨组件信息共享、关系引导的成对进化和自适应预算分配协调组件种群。我们在四个组合优化领域的选择型超启发式和组件化蚁群优化上评估了 MuEvo。结果表明，MuEvo 能持续改进人工设计的框架，并优于最先进 LLM-AHD 方法的代表性多组件扩展，证明其在由控制器介导的启发式池和功能分化的算法组件两类场景中的有效性。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper is motivated by the limitation of prior LLM-based automated heuristic design methods, which mainly evolve a single heuristic and do not handle multi-component optimization frameworks well. It proposes MuEvo, an LLM-driven framework for evolving heuristic ensembles with ensemble-level feedback, combining Dynamic Component Management with short-budget probing and reversible component lifecycle revision, and LLM-Driven Co-Evolution with multi-ensemble evaluation, cross-component information sharing, relation-guided pair evolution, and adaptive budget allocation. Experiments on selection hyper-heuristics and componentized ant colony optimization over four combinatorial optimization domains show that MuEvo consistently improves human-designed frameworks and outperforms representative multi-component extensions of state-of-the-art LLM-AHD methods.</div>
+<div class="mono" style="margin-top:8px">本文针对现有基于大语言模型的自动启发式设计主要优化单个启发式、而实际优化框架往往需要多个相互作用组件这一不足展开研究。作者提出MuEvo，一个在集成级反馈下演化启发式集成的LLM驱动框架，结合了动态组件管理（通过短预算探测和可逆生命周期动态调整组件优先级）以及LLM驱动的协同进化（包括多集成评估、跨组件信息共享、关系引导的成对进化和自适应预算分配）。在四个组合优化领域上的选择型超启发式和组件化蚁群优化实验表明，MuEvo稳定优于人工设计框架，并超过了代表性的多组件扩展版先进LLM-AHD方法。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Beyond Average Performance: Dynamic Instance Clustering and Specialized Algorithm Design in LLM-Assisted Evolutionary Search</div>
+<div class="meta-line">Authors: Qinglong Hu, Qingfu Zhang, Fei Liu, Xialiang Tong, Kun Mao, Mingxuan Yuan</div>
+<div class="meta-line">First: 2026-08-04T04:59:48+00:00 · Latest: 2026-08-04T04:59:48+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2608.03129v1">Abs</a> · <a href="https://arxiv.org/pdf/2608.03129v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large Language Model-assisted Evolutionary Search (LES) has emerged as a powerful paradigm for automated algorithm design. However, existing LES methods primarily optimize for average performance, inherently directing search effort toward instances that contribute most to this metric while leaving others poorly served, resulting in weak tail robustness and limited real-world reliability. To address this limitation, we propose Dynamic Instance Clustering and Specialized Algorithm Design (DyCA), an LES framework with a feature-free, structure-aware mechanism for constructing reliable algorithm portfolios under heterogeneous instance distributions. DyCA treats instance clustering as a co-evolving component within the search process, reusing accumulated evaluation data as feature-free signals to progressively partition instances with similar algorithmic response patterns. The uncovered clusters decompose the mixed objective into a set of structure-aware sub-objectives, thereby enabling finer-grained and more adaptive guidance for specialized algorithm design. Experimental results across four algorithm design tasks with heterogeneous instances demonstrate that DyCA outperforms state-of-the-art LES baselines, improving tail robustness by an average of 15.2\% and overall performance by 7.1\% while maintaining competitive head performance.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>超越平均性能：LLM辅助进化搜索中的动态实例聚类与专门化算法设计</div>
+<div class="mono" style="margin-top:8px">大语言模型（LLM）辅助进化搜索（LES）已成为自动化算法设计的强大范式。然而，现有LES方法主要优化平均性能，本质上将搜索资源导向对该指标贡献最大的实例，而对其他实例关注不足，从而导致尾部鲁棒性较弱、现实可靠性有限。为解决这一局限，我们提出动态实例聚类与专门化算法设计（DyCA），这是一种LES框架，采用无特征、结构感知的机制，在异质实例分布下构建可靠的算法组合。DyCA将实例聚类视为搜索过程中的协同进化组件，重用累积的评估数据作为无特征信号，逐步划分具有相似算法响应模式的实例。所发现的聚类将混合目标分解为一组结构感知的子目标，从而为专门化算法设计提供更细粒度、更自适应的指导。跨四个具有异质实例的算法设计任务的实验结果表明，DyCA优于当前最先进的LES基线方法，尾部鲁棒性平均提升15.2%，整体性能提升7.1%，同时保持了具有竞争力的头部性能。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper is motivated by the limitation of existing LLM-assisted evolutionary search methods, which mainly optimize average performance and therefore often neglect hard instances, leading to weak tail robustness and limited reliability. It proposes DyCA, a feature-free, structure-aware framework in which instance clustering co-evolves with the search process by reusing evaluation data to group instances with similar response patterns, and the resulting clusters define sub-objectives that guide specialized algorithm design. Experiments on four heterogeneous algorithm design tasks show that DyCA outperforms state-of-the-art baselines, improving tail robustness by 15.2% on average and overall performance by 7.1% while keeping head performance competitive.</div>
+<div class="mono" style="margin-top:8px">本文针对现有大语言模型辅助进化搜索方法主要优化平均性能、从而导致难例和尾部实例表现较弱的问题展开研究。作者提出了DyCA，一种无特征、结构感知的LES框架，将实例聚类作为搜索过程中共同演化的组成部分，利用已积累的评估数据将响应模式相近的实例逐步划分，并据此形成更细粒度的子目标来指导专门化算法设计。四个具有异质实例的算法设计任务上的实验表明，DyCA优于当前最先进的LES基线，平均尾部鲁棒性提升15.2%，整体性能提升7.1%，同时保持了具有竞争力的头部性能。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">DGA$_2$D: Directed Graph-Guided Automated Algorithm Design with Large Language Models</div>
+<div class="meta-line">Authors: Jiale Zhao, Zimu Chen, Sirui Mao, Wentao Yang, Yuxiang Bai, Liyuanjun Lai</div>
+<div class="meta-line">First: 2026-08-01T14:59:38+00:00 · Latest: 2026-08-01T14:59:38+00:00</div>
+<div class="meta-line">Comments: 46 pages, 5 figures, including supplementary material</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2608.00700v1">Abs</a> · <a href="https://arxiv.org/pdf/2608.00700v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">The rapid development of Large Language Models (LLMs) has opened new avenues for Automated Heuristic Design (AHD) for solving NP-hard combinatorial optimization problems (COPs). However, existing LLM-driven AHD methods are largely confined to rigid solver templates, relegating the search process to isolated module tuning. Transitioning to fully autonomous, system-level algorithm design is essential but fraught with low reliability of generated operators, extremely large search spaces, and ineffective credit assignment. To overcome these drawbacks, this paper proposes a Directed Graph-Guided Automated Algorithm Design framework, termed DGA$_2$D. It structures the open-ended program space as a directed graph, where each node represents a functional operator that can be instantiated using one of multiple candidate code implementations, while directed walks constitute complete algorithmic pipelines. A first-order path-dependent credit assignment mechanism is introduced to evaluate code variations strictly based on their topological context. Extensive experiments across 12 distinct COPs, ranging from complex scheduling to routing, demonstrate the consistent empirical advantages of DGA$_2$D. It reduces the average normalized gap by up to 10.96 percentage points compared to state-of-the-art LLM baselines.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>DGA$_2$D：基于有向图引导的大语言模型自动算法设计</div>
+<div class="mono" style="margin-top:8px">大型语言模型（LLMs）的快速发展为求解 NP-hard 组合优化问题（COPs）的自动启发式设计（AHD）开辟了新途径。然而，现有的 LLM 驱动 AHD 方法大多局限于刚性的求解器模板，将搜索过程降格为孤立的模块调参。向完全自主的系统级算法设计转变是必要的，但这面临着生成算子的可靠性低、搜索空间极大以及信用分配无效等挑战。为克服这些缺陷，本文提出一种有向图引导的自动算法设计框架，称为 DGA$_2$D。该框架将开放式程序空间结构化为有向图，其中每个节点表示一个功能算子，可由多个候选代码实现之一实例化，而有向游走构成完整的算法流水线。文中引入一种一阶、路径依赖的信用分配机制，仅依据其拓扑上下文严格评估代码变体。跨越 12 个不同 COPs 的大量实验（涵盖从复杂调度到路径规划）表明，DGA$_2$D 具有稳定的经验优势。与最先进的 LLM 基线相比，其平均归一化差距最多降低 10.96 个百分点。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper addresses automated heuristic design for NP-hard combinatorial optimization problems with LLMs, noting that prior methods are limited to fixed solver templates and struggle with unreliable generated operators, huge search spaces, and weak credit assignment. It proposes DGA2D, which represents the open-ended algorithm space as a directed graph of functional operators and uses directed walks to form complete algorithm pipelines, together with a first-order path-dependent credit assignment scheme that evaluates code variants in their topological context. Experiments on 12 combinatorial optimization tasks, including scheduling and routing, show consistent improvements over state-of-the-art LLM baselines, reducing the average normalized gap by up to 10.96 percentage points.</div>
+<div class="mono" style="margin-top:8px">本文针对基于大语言模型的自动启发式设计主要受限于固定求解器模板、只能做局部模块调参，以及在自主生成算子时可靠性低、搜索空间大和信用分配困难等问题，提出了DGA2D框架。该方法将开放式程序空间建模为有向图，节点表示可由多种候选代码实现的功能算子，有向路径对应完整算法流程，并引入一阶、路径依赖的信用分配机制，结合算子在拓扑上下文中的表现来评估代码变体。作者在12个组合优化问题上进行了实验，覆盖调度和路径规划等任务，结果表明DGA2D相较于现有最强的LLM基线具有稳定优势，平均归一化差距最多降低10.96个百分点。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">MOSAIC: Adversarial Co-evolution of Specialist Heuristics and Problem Instances for LLM-based Automated Heuristic Design</div>
+<div class="meta-line">Authors: Oguzhan Gungordu, Siheng Xiong, Faramarz Fekri</div>
+<div class="meta-line">First: 2026-07-31T04:22:17+00:00 · Latest: 2026-07-31T04:22:17+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2608.07544v1">Abs</a> · <a href="https://arxiv.org/pdf/2608.07544v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Automated heuristic design (AHD) with large language models (LLMs) has produced strong heuristics for combinatorial optimization problems (COPs). Yet existing frameworks optimize for average performance on a small fixed dataset and steer the search with &quot;verbal gradients&quot; distilled from scalar better/worse feedback. No single heuristic dominates across instance distributions, and scalar feedback tells the LLM whether a heuristic improved, but not where in the instance space or why. We propose MOSAIC, a grid-based framework that adversarially co-evolves problem instances and specialist heuristics inside a Quality-Diversity (QD) archive indexed by structural instance features. Instances evolve to expose weaknesses of the current heuristics, and heuristics evolve to eliminate them by specializing to the newly exposed regions. Each archive cell keeps a specialist heuristic, representative instances, and insights explaining what works in its region, forming a persistent memory that accumulates over the evolutionary search. For each heuristic pair sampled from distant grid regions, an LLM-guided evolutionary loop generates discriminative instances, and a decision tree identifies the feature-space regions where each heuristic wins. A reflection LLM then contrasts the two heuristics to produce multi-directional insights that persist in those regions and guide crossover and mutation. The archive is simultaneously a co-evolved benchmark of discriminative instances and a pool of region specialist heuristics, from which greedy selection extracts a compact complementary portfolio. Across COPs, test sizes, and LLM backbones, the portfolio consistently outperforms state-of-the-art LLM-based AHD methods, and the co-evolved instances attain higher feature-space coverage and stronger heuristic discrimination than evolutionary instance-generation baselines.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>MOSAIC：面向基于LLM的自动化启发式设计，专家启发式与问题实例的对抗式协同进化</div>
+<div class="mono" style="margin-top:8px">借助大语言模型（LLM）的自动化启发式设计（AHD）已为组合优化问题（COP）生成了强启发式。然而，现有框架通常只优化小型固定数据集上的平均性能，并使用由标量“变好/变差”反馈提炼出的“语言梯度”来引导搜索。没有任何单一启发式能在所有实例分布上占优，而标量反馈只能告诉LLM某个启发式是否改进，却无法说明其在实例空间的何处改进或原因。我们提出MOSAIC，一种基于网格的框架，在由结构性实例特征索引的质量-多样性（Quality-Diversity, QD）档案中，对问题实例与专家启发式进行对抗式协同进化。实例不断演化以暴露当前启发式的弱点，而启发式则通过专门适应新暴露的区域来消除这些弱点。档案中的每个单元都保存一个专家启发式、代表性实例以及解释该区域有效方法的洞见，形成一个在整个进化搜索过程中持续累积的持久记忆。对于从相距较远的网格区域采样的每对启发式，LLM引导的进化循环会生成具有区分性的实例，而决策树则识别出每个启发式获胜的特征空间区域。随后，一个反思型LLM对两种启发式进行对比，生成在这些区域中持续保留并指导交叉与变异的多方向洞见。该档案同时充当一个协同进化的区分性实例基准和一个区域专家启发式库，并通过贪心选择提取出一个紧凑的互补组合。在多个COP、测试规模和LLM骨干模型上，该组合始终优于最先进的基于LLM的AHD方法；协同进化得到的实例在特征空间覆盖率和启发式区分能力上也显著强于基于进化的实例生成基线。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">MOSAIC addresses the limitation of existing LLM-based automated heuristic design methods, which mainly optimize average performance on a fixed small dataset and rely on scalar better/worse feedback that does not indicate where a heuristic fails or why. It uses a Quality-Diversity archive indexed by structural instance features to co-evolve problem instances and specialist heuristics: instances are evolved to reveal weaknesses, heuristics are specialized to those exposed regions, and a decision tree plus a reflection LLM generate persistent region-specific insights that guide crossover and mutation. Experiments across combinatorial optimization problems, test sizes, and LLM backbones show that the extracted complementary portfolio consistently outperforms prior LLM-based AHD methods, while the co-evolved instances achieve greater feature-space coverage and discriminate heuristics better than evolutionary instance-generation baselines.</div>
+<div class="mono" style="margin-top:8px">本文针对现有基于LLM的自动启发式设计存在的两个问题：一是通常只在少量固定实例上优化平均性能，二是基于标量好坏反馈的“语言梯度”无法说明启发式在实例空间中的适用区域及原因。MOSAIC提出一种基于网格的质量多样性框架，在结构特征索引的档案中对问题实例和区域专用启发式进行对抗式协同进化，并结合代表性实例、决策树区域划分和反思LLM生成可持续积累的区域级洞见来指导交叉与变异。跨多种组合优化问题、测试规模和LLM骨干的实验表明，提取出的互补启发式组合稳定优于现有最先进的LLM自动启发式设计方法，同时共演化得到的实例在特征空间覆盖度和对启发式的区分能力上也优于已有的进化式实例生成基线。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency</div>
+<div class="meta-line">Authors: Kostis Michailidis, Dimos Tsouros, Nguyen Dang, Tias Guns</div>
+<div class="meta-line">First: 2026-07-30T14:21:55+00:00 · Latest: 2026-07-30T14:21:55+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2607.28268v1">Abs</a> · <a href="https://arxiv.org/pdf/2607.28268v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Combinatorial problems appear in numerous industrial applications. A common approach is to formulate these problems as declarative constraint models that can subsequently be compiled to and solved by a range of back-end solvers. Recent work shows that Large Language Models (LLMs) can produce correct models from natural language, but even a correct model can be expensive to solve because performance remains sensitive to modelling choices. In this work, we investigate whether LLMs can automate performance-oriented model reformulation. Inspired by Automatic Heuristic Design (AHD), we use an evolutionary framework in which an LLM proposes candidate reformulations that are verified and benchmarked against the user-defined baseline model. We compare AHD-adapted search strategies that control which prior attempts, instructions, and measured feedback enter each prompt. Existing retention strategies prioritize recency or performance, but do not explicitly diversify the context. To cover this gap, we introduce Profile-Diverse Retention (PDR), which applies Maximal Marginal Relevance (MMR) to instance-level runtime vectors to retain behaviourally diverse attempts. We systematically evaluate the strategies on eight CSPLib problems using validation-based final model selection. The results show that: (i) iterative reformulation can produce substantial held-out speedups; (ii) strategies that keep the retained context diverse outperform those that retain only recent or the fastest attempts; and (iii) validation-based selection improves the held-out speedup of every strategy.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>用于提升求解器效率的约束模型重构的 LLM 引导进化搜索</div>
+<div class="mono" style="margin-top:8px">组合优化问题广泛存在于众多工业应用中。常见做法是将这些问题表述为声明式约束模型，随后可编译并由多种后端求解器求解。近期研究表明，大型语言模型（LLMs）可以根据自然语言生成正确的模型，但即使模型正确，求解成本也可能很高，因为性能仍然对建模选择敏感。本文研究 LLM 是否能够自动进行面向性能的模型重构。受自动启发式设计（AHD）启发，我们使用一个进化框架，由 LLM 提出候选重构方案，并将其与用户定义的基线模型进行验证和基准测试。我们比较了经 AHD 适配的搜索策略，这些策略控制每次提示中纳入哪些先前尝试、指令和测量反馈。现有保留策略优先考虑新近性或性能，但未显式地使上下文多样化。为弥补这一空白，我们提出 Profile-Diverse Retention（PDR），它将最大边际相关性（MMR）应用于实例级运行时向量，以保留行为上多样化的尝试。我们在八个 CSPLib 问题上，采用基于验证集的最终模型选择系统评估了这些策略。结果表明：（i）迭代式重构可以带来显著的未见实例加速；（ii）保持保留上下文多样化的策略优于仅保留最近或最快尝试的策略；（iii）基于验证集的选择能提升每种策略在未见实例上的加速效果。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper addresses the problem that, although LLMs can generate correct constraint models from natural language, solver performance remains highly sensitive to modeling choices, motivating automated performance-oriented reformulation. It proposes an LLM-guided evolutionary search framework in which candidate reformulations are proposed by an LLM, verified, benchmarked against a baseline model, and used to compare retention strategies adapted from automatic heuristic design; the main new strategy, Profile-Diverse Retention, uses maximal marginal relevance over instance-level runtime vectors to keep behaviorally diverse prior attempts in context. Experiments on eight CSPLib problems show that iterative reformulation can yield substantial speedups on held-out instances, that diverse-context retention outperforms strategies retaining only recent or fastest attempts, and that validation-based final model selection improves held-out speedup for all strategies.</div>
+<div class="mono" style="margin-top:8px">本文针对一个问题展开：即使约束模型本身是正确的，其求解效率仍会受到建模方式影响，因此希望自动化地进行以性能为目标的模型重构。作者提出一个进化式搜索框架，让大语言模型生成候选重构方案，并对这些方案进行验证和基准测试；同时比较不同的上下文保留策略，其中新提出的 Profile-Diverse Retention 通过对实例级运行时间向量应用最大边际相关性来保留行为上更具多样性的历史尝试。基于八个 CSPLib 问题的实验表明，迭代重构能够在未见实例上带来显著加速；保留多样化上下文的策略优于只保留最近或最快尝试的策略；并且基于验证集的最终模型选择能够提升所有策略在未见实例上的加速效果。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Automatic programming via large language models with population self-evolution for dynamic fuzzy job shop scheduling problem</div>
+<div class="meta-line">Authors: Jin Huang, Qihao Liu, Xinyu Li, Liang Gao, Yue Teng</div>
+<div class="meta-line">First: 2024-10-30T02:54:31+00:00 · Latest: 2026-07-29T02:53:00+00:00</div>
+<div class="meta-line">Comments: 13 pages, 10 figures. Accepted for publication in IEEE Transactions on Fuzzy Systems</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2410.22657v2">Abs</a> · <a href="https://arxiv.org/pdf/2410.22657v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Heuristic dispatching rules (HDRs) are widely used for solving the dynamic fuzzy job shop scheduling problem (DFJSSP). However, their performance is highly sensitive to specific scenarios and often necessitates expert customization. To overcome this, automated design methods like genetic programming (GP) and gene expression programming (GEP) have been proposed. Despite their success, these methods face challenges, such as high randomness in the search process. Recently, the combination of large language models (LLMs) with evolutionary algorithms has opened new possibilities for prompt engineering and automated algorithm design. To improve the ability of LLMs in automatic HDR design, this paper introduces a novel population self-evolutionary (SeEvo) framework, which draws inspiration from the self-reflective design strategies employed by human experts. Notably, this framework employs a novel teacher-student learning mechanism, allowing the LLM (student) to generate robust HDRs. Guided by a teacher model with complete knowledge of actual processing times, the student learns to infer fuzzy uncertainties from historical deviations, enabling it to effectively anticipate and adapt to fuzzy impacts. Experimental results demonstrate that SeEvo significantly outperforms GP, GEP, deep reinforcement learning (DRL) methods, and more than ten commonly used HDRs from the literature, particularly in previously unseen and dynamic scenarios.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>基于大语言模型与群体自进化的动态模糊作业车间调度问题自动编程</div>
+<div class="mono" style="margin-top:8px">启发式派工规则（HDRs）被广泛用于求解动态模糊作业车间调度问题（DFJSSP）。然而，其性能对具体场景高度敏感，且往往需要专家定制。为克服这一问题，研究者提出了遗传编程（GP）和基因表达式编程（GEP）等自动设计方法。尽管这些方法取得了一定成功，但在搜索过程中仍面临随机性强等挑战。近年来，大语言模型（LLMs）与进化算法的结合为提示工程和自动算法设计开辟了新可能。为提升LLMs在自动HDR设计中的能力，本文提出一种新颖的群体自进化（SeEvo）框架，其灵感来源于人类专家的自反式设计策略。值得注意的是，该框架采用一种新的师生学习机制，使LLM（学生）能够生成稳健的HDRs。在具备真实加工时间完整知识的教师模型引导下，学生学习从历史偏差中推断模糊不确定性，从而有效预判并适应模糊影响。实验结果表明，SeEvo显著优于GP、GEP、深度强化学习（DRL）方法，以及文献中十余种常用HDRs，尤其在此前未见过的动态场景中表现突出。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper addresses the dynamic fuzzy job shop scheduling problem, where heuristic dispatching rules are effective but often need scenario-specific expert tuning and existing automatic design methods such as GP and GEP can be unstable. The authors propose SeEvo, a population self-evolution framework that uses large language models for automatic HDR design with a teacher-student learning mechanism: a teacher with access to true processing times guides a student LLM to infer fuzzy uncertainties from historical deviations and generate more robust rules. Experiments show that SeEvo outperforms GP, GEP, deep reinforcement learning methods, and more than ten common heuristic dispatching rules, with especially strong gains in unseen and dynamic scenarios.</div>
+<div class="mono" style="margin-top:8px">本文针对动态模糊作业车间调度问题中启发式派工规则难以通用、且现有自动设计方法如遗传编程和基因表达编程搜索随机性较强的问题，提出了SeEvo人口自进化框架。该方法引入师生学习机制，由掌握真实加工时间的教师模型引导LLM学生从历史偏差中推断模糊不确定性，从而生成更稳健的派工规则。实验结果表明，SeEvo在性能上显著优于GP、GEP、深度强化学习方法以及十余种常用启发式派工规则，并且在未见过的动态场景中表现尤为突出。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">SpecAHD: Localize to Specialize for Automated Heuristic Design in Large-Scale Routing Problems</div>
+<div class="meta-line">Authors: Kezhao Lai, Yutao Lai, Hai-Lin Liu</div>
+<div class="meta-line">First: 2026-07-26T14:22:15+00:00 · Latest: 2026-07-26T14:22:15+00:00</div>
+<div class="meta-line">Comments: 9 pages, 1 figure, and 3 tables. Supplementary material included</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2607.23676v1">Abs</a> · <a href="https://arxiv.org/pdf/2607.23676v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">LLM-based automated heuristic design (AHD) typically scores executable programs on complete instances or within fixed solver components. In large-scale routing problems, localized reconstruction reduces the size of each optimization task, but repair regions within the same incumbent can exhibit substantially different structures. One construction rule must therefore compromise across them. In this paper, we propose SpecAHD, a coupled bilevel framework for within-instance specialization. An upper-level search learns where to expose bounded repair regions, while a lower-level search evolves a complementary repertoire of executable heuristics for the induced repair tasks. The upper-level program determines the repair tasks seen by the lower level, while checked repair outcomes determine how upper-level programs are evaluated. The lower-level objective favors heuristics that perform well on average or solve tasks that the current repertoire handles poorly. For the repair tasks induced by a fixed upper-level program and a fixed lower-level candidate pool, this objective is monotone submodular, allowing greedy repertoire selection with a (1-1/e) approximation guarantee. Across four routing problems and multiple LLM backbones, SpecAHD reduces held-out objective cost by up to 57.7% against the strongest competing AHD baseline and outperforms the per-instance baseline envelope on most public instances.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>SpecAHD：在大规模路径问题中通过局部化实现专门化的自动启发式设计</div>
+<div class="mono" style="margin-top:8px">基于LLM的自动启发式设计（AHD）通常在完整实例或固定求解器组件内对可执行程序进行评分。在大规模路径问题中，局部重构可减小每个优化任务的规模，但同一 incumbent 内的修复区域可能呈现显著不同的结构。因此，一条构造规则必须在这些区域之间进行折中。本文提出SpecAHD，一种用于实例内专门化的耦合双层框架。上层搜索学习在何处暴露有界修复区域，下层搜索则为由此诱导的修复任务进化出互补的可执行启发式集合。上层程序决定下层所见的修复任务，而经过验证的修复结果决定上层程序如何被评估。下层目标偏好在平均意义上表现良好的启发式，或能解决当前启发式集合处理不佳的任务。对于由固定上层程序和固定下层候选池诱导的修复任务，该目标具有单调子模性，因此可用贪心方式选择启发式集合，并获得(1-1/e)近似保证。在四类路径问题和多个LLM骨干模型上，SpecAHD相较最强竞争AHD基线将留出集目标代价最多降低57.7%，并在大多数公开实例上优于按实例基线包络。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper addresses automated heuristic design for large-scale routing problems, where existing LLM-based methods usually evaluate programs on whole instances or fixed solver components and therefore struggle with heterogeneous local repair structures within the same instance. The proposed SpecAHD framework uses a coupled bilevel search: an upper level learns which bounded repair regions to expose, and a lower level evolves a repertoire of executable heuristics specialized to the induced repair tasks, with a monotone submodular objective that supports greedy selection with a (1-1/e) guarantee. Experiments on four routing problems with multiple LLM backbones show that SpecAHD reduces held-out objective cost by up to 57.7% versus the strongest competing AHD baseline and beats the per-instance baseline envelope on most public instances.</div>
+<div class="mono" style="margin-top:8px">本文针对大规模路径规划中的LLM自动启发式设计存在的局限展开研究：现有方法通常在完整实例或固定求解器组件上评估程序，但同一实例中不同修复区域的结构差异很大，因此单一构造规则难以同时适配。作者提出SpecAHD，一个耦合的双层框架，通过上层搜索学习应暴露哪些受限修复区域，下层则为这些诱导出的修复任务进化一组互补的可执行启发式。下层目标被证明具有单调子模性质，因此可用贪心方法进行库选择，并具有(1-1/e)近似保证。基于四类路径规划问题和多种LLM骨干的实验表明，SpecAHD相较最强竞争AHD基线在保留测试集上的目标值最多降低57.7%，并且在大多数公开实例上优于按实例的基线包络。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">On the Runtime Analysis of Reinforcement Learning Hyper-Heuristics</div>
+<div class="meta-line">Authors: Pietro S. Oliveto, Zhenyu Wang, Peizhou Wu, Mengqing Xu</div>
+<div class="meta-line">First: 2026-07-24T07:02:45+00:00 · Latest: 2026-07-24T07:02:45+00:00</div>
+<div class="meta-line">Comments: Published in PPSN 2026</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2607.22036v1">Abs</a> · <a href="https://arxiv.org/pdf/2607.22036v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Selection Hyper-heuristics (HHs) automate algorithmic design by selecting from a set of low-level heuristics which one to apply at each stage of the optimisation process. Several impressive results have been recently rigorously proven regarding the performance of selection hyper-heuristics (HHs) for standard benchmark functions. However, the learning mechanisms employed by these HHs are considerably simplified compared to the machine learning techniques typically used in real world applications. In this paper we analyse a Reinforcement Learning Hyper-heuristic (RLHH) from the literature. The only previous result available proved that for a wide range of parameter settings, RLHH does not learn to select heuristics appropriately for the standard LeadingOnes benchmark function. In this paper, we rigorously prove that with appropriate parameter values RLHH equipped with two random local search operators, RLS_1 and RLS_2 optimises the LeadingOnes benchmark function in the best possible expected runtime achievable with the two operators up to lower order terms. Experiments show that for realistic problem sizes it is faster than the Generalised Random Gradient HH which was previously proven to also have optimal expected runtime up to lower order terms.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>强化学习 Hyper-heuristic 的运行时间分析</div>
+<div class="mono" style="margin-top:8px">选择型 Hyper-heuristic（HH）通过从一组低层启发式中选择在优化过程各阶段应用哪一种，从而实现算法设计自动化。近期，关于选择型 Hyper-heuristic（HH）在标准基准函数上的性能，已有若干重要结果被严格证明。然而，与现实应用中通常使用的机器学习技术相比，这些 HH 所采用的学习机制要简化得多。本文分析了文献中的一种强化学习 Hyper-heuristic（RLHH）。此前唯一的结果证明：在较宽的参数设置范围内，RLHH 无法学会在标准 LeadingOnes 基准函数上恰当地选择启发式。本文严格证明：当取适当参数值时，配备两个随机局部搜索算子 RLS_1 和 RLS_2 的 RLHH，能够以在这两个算子下可实现的最佳期望运行时间（忽略低阶项）优化 LeadingOnes 基准函数。实验表明，对于实际规模的问题，它比广义随机梯度 HH 更快；后者此前已被证明同样具有忽略低阶项后的最优期望运行时间。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper studies the runtime behavior of a reinforcement learning hyper-heuristic (RLHH), motivated by the gap between earlier theoretical results on simplified selection hyper-heuristics and the more complex learning mechanisms used in practice. The authors rigorously analyze RLHH on the LeadingOnes benchmark with two random local search operators, RLS_1 and RLS_2, and prove that with suitable parameter settings it achieves the best possible expected runtime up to lower-order terms among algorithms using these two operators. Experiments further indicate that on realistic problem sizes it runs faster than the Generalised Random Gradient hyper-heuristic, which had also been shown to have asymptotically optimal expected runtime.</div>
+<div class="mono" style="margin-top:8px">本文研究强化学习超启发式算法的运行时间，是因为先前理论结果表明，在许多参数设置下，它在 LeadingOnes 基准上无法学会合适的启发式选择。作者分析了一个使用两个随机局部搜索算子 RLS_1 和 RLS_2 的 RLHH，并严格证明在合适参数下，它在 LeadingOnes 上能够达到最优期望运行时间（忽略低阶项），即在这两个算子所能实现的范围内是最优的。实验还表明，在实际规模的问题上，它比此前已被证明渐近最优的 Generalised Random Gradient 超启发式算法更快。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">From Heuristic Selection to Automated Algorithm Design: LLMs Benefit from Strong Priors</div>
+<div class="meta-line">Authors: Qi Huang, Furong Ye, Ananta Shahane, Thomas Bäck, Niki van Stein</div>
+<div class="meta-line">First: 2026-03-03T09:27:52+00:00 · Latest: 2026-07-19T10:36:17+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2603.02792v2">Abs</a> · <a href="https://arxiv.org/pdf/2603.02792v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large Language Models (LLMs) have already been widely adopted for automated algorithm design, demonstrating strong abilities in generating and evolving algorithms across various fields. Existing work has largely focused on examining their effectiveness in solving specific problems, with search strategies primarily guided by adaptive prompt designs. In this paper, through investigating the token-wise attribution of the prompts to LLM-generated algorithmic codes, we show that providing high-quality algorithmic code examples can substantially improve the performance of the LLM-driven optimization. Building upon this insight, we propose leveraging prior benchmark algorithms to guide LLM-driven optimization and demonstrate superior performance on two black-box optimization benchmarks: the pseudo-Boolean optimization suite (pbo) and the black-box optimization suite (bbob). Our findings highlight the value of integrating benchmarking studies to enhance both efficiency and robustness of the LLM-driven black-box optimization methods.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>从启发式选择到自动化算法设计：LLM 受益于强先验</div>
+<div class="mono" style="margin-top:8px">大型语言模型（LLMs）已被广泛用于自动化算法设计，在跨领域生成和演化算法方面展现出强大能力。现有研究主要聚焦于考察其解决特定问题的有效性，搜索策略主要由自适应提示设计引导。本文通过研究提示中各 token 对 LLM 生成算法代码的归因，表明提供高质量的算法代码示例可显著提升 LLM 驱动优化的性能。在此洞见基础上，我们提出利用先验基准算法来引导 LLM 驱动的优化，并在两个黑盒优化基准上展示了更优性能：pseudo-Boolean optimization suite（pbo）和 black-box optimization suite（bbob）。我们的发现强调了整合基准研究以提升 LLM 驱动黑盒优化方法的效率与鲁棒性的价值。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This paper is motivated by the observation that LLM-based automated algorithm design is usually steered by adaptive prompting, while the role of strong algorithmic priors has been underexplored. By analyzing token-level attribution in LLM-generated algorithmic code, the authors show that high-quality code examples can substantially improve optimization performance, and they use prior benchmark algorithms as guidance for LLM-driven search. Experiments on the pseudo-Boolean optimization suite (pbo) and the black-box optimization suite (bbob) show superior results, suggesting that benchmarking-derived priors improve both efficiency and robustness.</div>
+<div class="mono" style="margin-top:8px">本文的动机在于，现有基于LLM的自动算法设计主要依赖提示词搜索，但对提示如何影响生成结果缺乏深入理解。作者通过分析LLM生成算法代码中不同token的归因，发现高质量的算法代码示例能够显著提升优化效果，并据此提出利用已有基准算法作为先验来引导LLM驱动的优化。实验在伪布尔优化基准（pbo）和黑盒优化基准（bbob）上均取得了更优表现，说明引入基准研究得到的先验有助于提高方法的效率和鲁棒性。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">How to Guide LLM Generation: Dual-Surrogate Guided Search for Automated Heuristic Design</div>
+<div class="meta-line">Authors: Yuhan Wang, Chaoda Peng, Xingyu Wu, Sheng-Hao Wu, Zhi-Hui Zhan</div>
+<div class="meta-line">First: 2026-07-15T14:52:46+00:00 · Latest: 2026-07-15T14:52:46+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2607.13911v1">Abs</a> · <a href="https://arxiv.org/pdf/2607.13911v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language models (LLMs) have made automated heuristic design (AHD) increasingly practical by generating executable heuristic code from task descriptions and evaluator feedback. Yet under a limited query and evaluation budget, search efficiency depends critically on a pre-generation decision. Before each LLM query and black-box evaluation, the system must choose which archived heuristics to reuse as parents and which generation operator should transform them. Existing methods typically choose such actions with predefined rules, leaving the expected outcome of each concrete operator-parent action only indirectly modeled. Therefore, we propose \emph{\fullmethod{}} (\method{}), a surrogate-guided action-selection module for operator-parent selection in LLM-based AHD. \method{} guides the LLM code-generation process by scoring pre-generation actions with two complementary surrogates. Specifically, a transition surrogate is proposed to predict the latent distribution of the child representation induced by an operator-parent action, while an instance-conditioned utility surrogate is proposed to estimate the expected performance of sampled child latents. Moreover, we propose an uncertainty-aware acquisition rule that combines predicted utility, utility uncertainty, and transition uncertainty to select the next LLM generation action. Across a diverse heuristic-design suite, \method{} is competitive with strong LLM-AHD baselines, and ablation and action-selection analyses suggest that its behavior goes beyond simple archive ranking or fixed operator preferences.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>如何引导 LLM 生成：用于自动化启发式设计的双替代模型引导搜索</div>
+<div class="mono" style="margin-top:8px">大型语言模型（LLMs）通过根据任务描述和评估器反馈生成可执行的启发式代码，使自动化启发式设计（AHD）日益可行。然而，在查询和评估预算有限的情况下，搜索效率在很大程度上取决于一个生成前决策。在每次 LLM 查询和黑盒评估之前，系统必须选择重用哪些已归档的启发式作为父代，以及应使用哪种生成算子对其进行变换。现有方法通常以预定义规则选择此类动作，使每个具体的“算子-父代”动作的期望结果仅被间接建模。因此，我们提出了 \emph{\fullmethod{}}（\method{}），一种用于基于 LLM 的 AHD 中算子-父代选择的替代模型引导动作选择模块。\method{} 通过两个互补的替代模型对生成前动作进行评分，从而引导 LLM 代码生成过程。具体而言，我们提出了一个转移替代模型，用于预测算子-父代动作诱导的子表示潜在分布；同时提出了一个实例条件化效用替代模型，用于估计所采样子潜变量的期望性能。此外，我们提出了一种不确定性感知的获取规则，将预测效用、效用不确定性和转移不确定性结合起来，以选择下一步 LLM 生成动作。在多样化的启发式设计基准上，\method{} 与强大的 LLM-AHD 基线方法相比具有竞争力；消融实验和动作选择分析表明，其行为超越了简单的归档排序或固定的算子偏好。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper addresses automated heuristic design with large language models under limited query and evaluation budgets, where performance depends on choosing which archived heuristic to reuse and which operator to apply before each generation step. It proposes a dual-surrogate action-selection module that uses a transition surrogate to model the latent child distribution from an operator-parent action and an instance-conditioned utility surrogate to estimate the expected quality of sampled children, combined with an uncertainty-aware acquisition rule that balances utility and uncertainty. Experiments on a diverse heuristic-design suite show that the method is competitive with strong LLM-AHD baselines, and ablations plus action-selection analyses indicate it learns behavior beyond simple archive ranking or fixed operator preferences.</div>
+<div class="mono" style="margin-top:8px">本文针对LLM驱动的自动化启发式设计在查询和评估预算受限时搜索效率不足的问题，指出在每次生成前需要决定复用哪个归档启发式以及采用哪种生成算子，而现有方法通常依赖预设规则，难以直接建模具体动作的效果。作者提出一种双代理引导的动作选择模块，包含用于预测算子-父节点动作所诱导子表示分布的迁移代理、用于估计采样子表示期望性能的实例条件效用代理，以及结合效用与不确定性的获取规则来选择下一步生成动作。多种启发式设计任务上的实验表明，该方法与强基线相比具有竞争力，消融和动作选择分析也显示其行为不只是简单的归档排序或固定算子偏好。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">RefineEvo: Planning-Guided Heuristic Evolution with Bidirectional Experience</div>
+<div class="meta-line">Authors: Yang Wu, Junran Pan, Yifan Zhang, Ning Xu, Fanshuo Zeng, Jian Cheng</div>
+<div class="meta-line">First: 2026-07-13T10:24:34+00:00 · Latest: 2026-07-13T10:24:34+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2607.11358v1">Abs</a> · <a href="https://arxiv.org/pdf/2607.11358v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Automatic Heuristic Design (AHD) has emerged as a transformative approach for solving combinatorial optimization problems. While recent Large Language Model (LLM)-based methods have shown promise, they predominantly rely on fixed evolutionary operators and struggle to effectively accumulate and reuse historical search experience. This paper proposes RefineEvo, a novel evolutionary framework that transforms AHD from a static trial-and-error process into a planning-guided, experience-driven system. RefineEvo introduces a Planner to dynamically schedule evolutionary operators and trigger refinement based on the current search state, and a Reflector to distill valuable lessons into a Bidirectional Experience Pool containing both positive insights and negative pitfalls. This synergistic framework enables the system to adapt its search tools to the evolving complexity of the problem and leverage trajectory-aware, situation-conditioned insights to guide generation. Experiments on several classic combinatorial optimization benchmarks demonstrate that RefineEvo consistently outperforms strong baselines. In particular, RefineEvo delivers superior solution quality while improving token efficiency, enabling more efficient and autonomous heuristic design.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>RefineEvo：基于规划引导和双向经验的启发式进化</div>
+<div class="mono" style="margin-top:8px">自动启发式设计（AHD）已成为解决组合优化问题的变革性方法。尽管近期基于大型语言模型（LLM）的方法已展现出潜力，但它们主要依赖固定的进化算子，并难以有效积累和复用历史搜索经验。本文提出 RefineEvo，一种新颖的进化框架，将 AHD 从静态的试错过程转变为由规划引导、由经验驱动的系统。RefineEvo 引入 Planner，根据当前搜索状态动态调度进化算子并触发 refinement；同时引入 Reflector，将有价值的经验提炼为包含正向洞见和负向陷阱的双向经验池。该协同框架使系统能够随问题复杂度演化而调整搜索工具，并利用具备轨迹感知、情境条件化的洞见指导生成。多个经典组合优化基准上的实验表明，RefineEvo 始终优于强基线。尤其是，RefineEvo 在提升解质量的同时提高了 token 效率，从而实现了更高效、更自治的启发式设计。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">RefineEvo addresses automatic heuristic design for combinatorial optimization, where existing LLM-based evolutionary methods often use fixed operators and fail to reuse search experience effectively. The proposed framework adds a Planner to choose and schedule evolutionary operators based on the current search state, and a Reflector to extract lessons into a bidirectional experience pool of positive and negative cases to guide future generation. Experiments on several classic benchmarks show that RefineEvo consistently outperforms strong baselines, achieving better solution quality while using fewer tokens.</div>
+<div class="mono" style="margin-top:8px">本文针对组合优化中的自动启发式设计问题，指出现有基于大语言模型的进化方法通常依赖固定算子，且难以有效积累和复用历史搜索经验。RefineEvo提出一种规划驱动的进化框架，其中Planner根据当前搜索状态动态调度进化算子并决定何时进行细化，Reflector则将有价值的经验总结到同时包含正向启发和负向陷阱的双向经验池中，用于后续生成。实验结果表明，该方法在多个经典组合优化基准上稳定优于强基线，不仅得到更好的解质量，还提升了token效率。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">QDEvo: A Multi-Objective Quality-Diversity Framework for Automated Heuristic Design</div>
+<div class="meta-line">Authors: Nam Do Khanh, Nhat Nguyen Tran Minh, Dat Pham Vu Tuan, Long Doan, Binh Huynh Thi Thanh</div>
+<div class="meta-line">First: 2026-07-06T07:35:23+00:00 · Latest: 2026-07-06T07:35:23+00:00</div>
+<div class="meta-line">Comments: 4 pages; Accepted as poster at GECCO 2026</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2607.11916v1">Abs</a> · <a href="https://arxiv.org/pdf/2607.11916v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">The integration of Large Language Models (LLMs) with evolutionary computation has emerged as a powerful paradigm for automated heuristic design in combinatorial optimization. However, existing approaches suffer from mode collapse, converging to homogeneous populations that lack semantic diversity and fail to explore the full algorithmic space. We propose Quality-Diversity Evolution (QDEvo), a multi-objective framework that integrates Quality-Diversity optimization with LLM-driven heuristic search, maintaining an unbounded archive of semantically diverse algorithms using pre-trained code embeddings and incorporating hierarchical self-reflection to guide the evolutionary process. Extensive experiments across standard benchmarks and real-world industrial applications demonstrate that QDEvo significantly outperforms state-of-the-art methods in both Hypervolume and Inverted Generational Distance metrics. Our framework enables the discovery of heuristics that are simultaneously high-performing, computationally efficient, and semantically diverse, providing practitioners with a rich portfolio of solutions for complex optimization problems.</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>QDEvo：一种用于自动化启发式设计的多目标质量-多样性框架</div>
+<div class="mono" style="margin-top:8px">大型语言模型（LLMs）与进化计算的结合，已成为组合优化中自动化启发式设计的强大范式。然而，现有方法存在模式坍塌问题，易收敛到缺乏语义多样性的同质化种群，且无法探索完整的算法空间。我们提出 Quality-Diversity Evolution（QDEvo），一种将质量-多样性优化与 LLM 驱动的启发式搜索相结合的多目标框架，利用预训练代码嵌入维护一个无界的语义多样算法档案，并引入层次化自反思以引导进化过程。大量在标准基准和真实工业应用上的实验表明，QDEvo 在 Hypervolume 和 Inverted Generational Distance 指标上均显著优于当前最先进方法。该框架能够发现同时具备高性能、计算高效且语义多样的启发式方法，为复杂优化问题提供丰富的解决方案组合。</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The paper addresses the problem that LLM-assisted evolutionary methods for automated heuristic design often collapse to a small set of similar solutions and fail to explore diverse algorithmic strategies. To mitigate this, QDEvo combines quality-diversity optimization with LLM-driven heuristic search, maintains an unbounded archive of semantically diverse algorithms using pretrained code embeddings, and adds hierarchical self-reflection to steer evolution. Experiments on standard benchmarks and industrial applications show that QDEvo outperforms prior methods on Hypervolume and Inverted Generational Distance, while producing heuristics that are both strong in performance and semantically diverse.</div>
+<div class="mono" style="margin-top:8px">本文针对LLM与进化计算结合用于自动启发式设计时容易出现模式坍塌的问题，即种群往往收敛为同质化算法，缺乏语义多样性。作者提出QDEvo，一个多目标质量-多样性框架，将LLM驱动的启发式搜索与无界档案结合，并使用预训练代码嵌入表示语义多样的算法，同时引入分层自反思机制来引导进化过程。大量标准基准和工业应用实验表明，QDEvo在Hypervolume和Inverted Generational Distance指标上均优于现有方法，并能发现兼具高性能、计算效率和语义多样性的启发式方案。</div>
+</details>
+</div>
+<div class="card">
+<div class="title">RAISE: LLM-based Automated Heuristic Design with Robust Adversary Instance Search</div>
+<div class="meta-line">Authors: Fei Liu, Alessio Figalli, Patrick Owen, Nicola Serra</div>
+<div class="meta-line">First: 2026-06-30T15:19:27+00:00 · Latest: 2026-06-30T15:19:27+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2606.31801v1">Abs</a> · <a href="https://arxiv.org/pdf/2606.31801v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Automated Heuristic Design (AHD) with Large Language Models (LLMs) has shown remarkable progress in discovering high-quality heuristics. However, existing LLM-based AHD methods optimize heuristics for a fixed training instance set and may fail catastrophically when deployed under real-world distributional shifts. We propose Robust Adversary Instance Search (RAISE), a framework that integrates constrained worst-case instance search within a principled neighborhood of the training distribution into the LLM-based evolutionary search loop. RAISE treats robust AHD as a constrained adversarial instance search problem: the outer loop evolves heuristics via LLM operators, while an LLM-free inner loop efficiently identifies hard instances within an epsilon-ball around the training instance set using a basis distribution parameterization with boundary projection. Comprehensive experiments on Online Bin Packing (OBP), Online Job Shop Scheduling (OJSP), and Online Vehicle Routing (OVRP) across five distribution families demonstrate that existing LLM-based AHD methods degrade by up to 19 times under distribution shift, while RAISE consistently maintains strong performance across all tested distributions and problem scales</div></details>
+<details class="detail"><summary>中文标题/摘要</summary>
+<div class="mono"><b>标题：</b>RAISE：基于LLM的自动化启发式设计与鲁棒对抗实例搜索</div>
+<div class="mono" style="margin-top:8px">借助大语言模型（LLMs）的自动化启发式设计（AHD）在发现高质量启发式算法方面已取得显著进展。然而，现有基于LLM的AHD方法通常只针对固定的训练实例集优化启发式算法，在真实世界的分布偏移下可能会灾难性失效。我们提出鲁棒对抗实例搜索（RAISE），一种将受约束的最坏情况实例搜索集成到训练分布的合理邻域中的LLM-based进化搜索循环中的框架。RAISE将鲁棒AHD视为一个受约束的对抗实例搜索问题：外层循环通过LLM算子演化启发式算法，内层无LLM的循环使用带边界投影的基分布参数化，在训练实例集周围的epsilon-ball内高效识别困难实例。针对在线装箱（OBP）、在线作业车间调度（OJSP）和在线车辆路径问题（OVRP）在五类分布族上的全面实验表明，现有基于LLM的AHD方法在分布偏移下性能最高下降19倍，而RAISE在所有测试分布和问题规模上都能稳定保持强性能</div>
+</details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">This work addresses the weakness of existing LLM-based automated heuristic design methods, which often overfit a fixed training instance set and can collapse under distribution shifts. The proposed RAISE framework inserts constrained worst-case instance search into the LLM-driven evolutionary loop: an outer LLM-based search evolves heuristics, while an inner LLM-free procedure finds hard instances near the training distribution using a basis-distribution parameterization and boundary projection. Experiments on Online Bin Packing, Online Job Shop Scheduling, and Online Vehicle Routing across five distribution families show that prior LLM-based AHD methods can degrade by up to 19x under shift, whereas RAISE maintains strong and stable performance across distributions and problem scales.</div>
+<div class="mono" style="margin-top:8px">本文针对基于大语言模型的自动启发式设计容易只适配固定训练实例、在分布偏移下性能显著下降的问题。作者提出RAISE，将受约束的最坏情况对抗实例搜索融入LLM驱动的进化搜索流程中：外层用LLM算子演化启发式，内层则在训练分布附近的epsilon邻域内，通过基于basis distribution的参数化和边界投影，无需LLM地高效寻找困难实例。在线装箱、在线作业车间调度和在线车辆路径三类问题、五种分布族上的实验表明，现有LLM-AHD方法在分布偏移下最多可退化19倍，而RAISE在不同分布和问题规模下都能保持稳定且较强的性能。</div>
+</details>
+</div></div>
+    <details style="margin-top:16px" class="detail"><summary>History</summary>
+      <div class="history-list"><a href="archive/20261011_0530.html">20261011_0530</a>
+<a href="archive/20261010_0635.html">20261010_0635</a>
+<a href="archive/20261009_0719.html">20261009_0719</a>
+<a href="archive/20261008_0708.html">20261008_0708</a>
+<a href="archive/20261007_0640.html">20261007_0640</a>
+<a href="archive/20261006_0809.html">20261006_0809</a>
+<a href="archive/20261005_0515.html">20261005_0515</a>
+<a href="archive/20261004_0459.html">20261004_0459</a>
+<a href="archive/20261003_0608.html">20261003_0608</a>
+<a href="archive/20261002_0638.html">20261002_0638</a>
+<a href="archive/20261001_0614.html">20261001_0614</a>
+<a href="archive/20260930_0612.html">20260930_0612</a>
+<a href="archive/20260929_0714.html">20260929_0714</a>
+<a href="archive/20260928_0520.html">20260928_0520</a>
+<a href="archive/20260927_0500.html">20260927_0500</a>
+<a href="archive/20260926_0531.html">20260926_0531</a>
+<a href="archive/20260925_0529.html">20260925_0529</a>
+<a href="archive/20260924_0530.html">20260924_0530</a>
+<a href="archive/20260923_0515.html">20260923_0515</a>
+<a href="archive/20260922_0603.html">20260922_0603</a>
+<a href="archive/20260921_0444.html">20260921_0444</a>
+<a href="archive/20260920_0430.html">20260920_0430</a>
+<a href="archive/20260919_0451.html">20260919_0451</a>
+<a href="archive/20260918_0520.html">20260918_0520</a>
+<a href="archive/20260917_0516.html">20260917_0516</a>
+<a href="archive/20260916_0514.html">20260916_0514</a>
+<a href="archive/20260915_0549.html">20260915_0549</a>
+<a href="archive/20260913_0430.html">20260913_0430</a>
+<a href="archive/20260912_0452.html">20260912_0452</a>
+<a href="archive/20260911_0450.html">20260911_0450</a>
+<a href="archive/20260910_0454.html">20260910_0454</a>
+<a href="archive/20260909_0506.html">20260909_0506</a>
+<a href="archive/20260908_0538.html">20260908_0538</a>
+<a href="archive/20260907_0429.html">20260907_0429</a>
+<a href="archive/20260906_0418.html">20260906_0418</a>
+<a href="archive/20260905_0440.html">20260905_0440</a>
+<a href="archive/20260904_0505.html">20260904_0505</a>
+<a href="archive/20260903_0500.html">20260903_0500</a>
+<a href="archive/20260902_0508.html">20260902_0508</a>
+<a href="archive/20260901_0712.html">20260901_0712</a>
+<a href="archive/20260831_0509.html">20260831_0509</a>
+<a href="archive/20260830_0510.html">20260830_0510</a>
+<a href="archive/20260829_1001.html">20260829_1001</a>
+<a href="archive/20260828_1032.html">20260828_1032</a>
+<a href="archive/20260827_0412.html">20260827_0412</a>
+<a href="archive/20260826_0255.html">20260826_0255</a>
+<a href="archive/20260825_0255.html">20260825_0255</a>
+<a href="archive/20260824_0242.html">20260824_0242</a>
+<a href="archive/20260823_0243.html">20260823_0243</a>
+<a href="archive/20260822_0254.html">20260822_0254</a>
+<a href="archive/20260821_0255.html">20260821_0255</a>
+<a href="archive/20260820_0314.html">20260820_0314</a>
+<a href="archive/20260819_0253.html">20260819_0253</a>
+<a href="archive/20260818_0254.html">20260818_0254</a>
+<a href="archive/20260817_0243.html">20260817_0243</a>
+<a href="archive/20260816_0242.html">20260816_0242</a>
+<a href="archive/20260815_0308.html">20260815_0308</a>
+<a href="archive/20260814_0316.html">20260814_0316</a>
+<a href="archive/20260813_0317.html">20260813_0317</a>
+<a href="archive/20260812_0321.html">20260812_0321</a>
+<a href="archive/20260811_0311.html">20260811_0311</a>
+<a href="archive/20260810_0255.html">20260810_0255</a>
+<a href="archive/20260809_0254.html">20260809_0254</a>
+<a href="archive/20260808_0312.html">20260808_0312</a>
+<a href="archive/20260807_0816.html">20260807_0816</a>
+<a href="archive/20260806_0353.html">20260806_0353</a>
+<a href="archive/20260805_0354.html">20260805_0354</a>
+<a href="archive/20260804_0355.html">20260804_0355</a>
+<a href="archive/20260803_0329.html">20260803_0329</a>
+<a href="archive/20260802_0327.html">20260802_0327</a>
+<a href="archive/20260801_0353.html">20260801_0353</a>
+<a href="archive/20260731_0350.html">20260731_0350</a>
+<a href="archive/20260730_0336.html">20260730_0336</a>
+<a href="archive/20260729_0406.html">20260729_0406</a>
+<a href="archive/20260728_0353.html">20260728_0353</a>
+<a href="archive/20260727_0336.html">20260727_0336</a>
+<a href="archive/20260726_0331.html">20260726_0331</a>
+<a href="archive/20260725_0350.html">20260725_0350</a>
+<a href="archive/20260724_0350.html">20260724_0350</a>
+<a href="archive/20260723_0348.html">20260723_0348</a>
+<a href="archive/20260722_0356.html">20260722_0356</a>
+<a href="archive/20260721_0400.html">20260721_0400</a>
+<a href="archive/20260720_0325.html">20260720_0325</a>
+<a href="archive/20260719_0322.html">20260719_0322</a>
+<a href="archive/20260718_0331.html">20260718_0331</a>
+<a href="archive/20260717_0332.html">20260717_0332</a>
+<a href="archive/20260716_0332.html">20260716_0332</a>
+<a href="archive/20260715_0346.html">20260715_0346</a>
+<a href="archive/20260714_0349.html">20260714_0349</a>
+<a href="archive/20260713_0330.html">20260713_0330</a>
+<a href="archive/20260712_0321.html">20260712_0321</a>
+<a href="archive/20260711_0349.html">20260711_0349</a>
+<a href="archive/20260710_0402.html">20260710_0402</a>
+<a href="archive/20260709_0351.html">20260709_0351</a>
+<a href="archive/20260708_0410.html">20260708_0410</a>
+<a href="archive/20260707_0413.html">20260707_0413</a>
+<a href="archive/20260706_0339.html">20260706_0339</a>
+<a href="archive/20260705_0328.html">20260705_0328</a>
+<a href="archive/20260704_0344.html">20260704_0344</a>
+<a href="archive/20260703_1655.html">20260703_1655</a>
+<a href="archive/20260703_0348.html">20260703_0348</a>
+<a href="archive/20260702_0418.html">20260702_0418</a>
+<a href="archive/20260701_0416.html">20260701_0416</a>
+<a href="archive/20260630_0417.html">20260630_0417</a>
+<a href="archive/20260629_0348.html">20260629_0348</a>
+<a href="archive/20260628_0347.html">20260628_0347</a>
+<a href="archive/20260627_0406.html">20260627_0406</a>
+<a href="archive/20260626_0417.html">20260626_0417</a>
+<a href="archive/20260625_0401.html">20260625_0401</a>
+<a href="archive/20260624_0420.html">20260624_0420</a>
+<a href="archive/20260623_0502.html">20260623_0502</a>
+<a href="archive/20260622_0358.html">20260622_0358</a>
+<a href="archive/20260621_0352.html">20260621_0352</a>
+<a href="archive/20260620_0402.html">20260620_0402</a>
+<a href="archive/20260619_0439.html">20260619_0439</a>
+<a href="archive/20260618_0429.html">20260618_0429</a>
+<a href="archive/20260617_0517.html">20260617_0517</a>
+<a href="archive/20260616_0518.html">20260616_0518</a>
+<a href="archive/20260615_0352.html">20260615_0352</a>
+<a href="archive/20260614_0351.html">20260614_0351</a>
+<a href="archive/20260613_0425.html">20260613_0425</a>
+<a href="archive/20260612_0438.html">20260612_0438</a>
+<a href="archive/20260611_0445.html">20260611_0445</a>
+<a href="archive/20260610_0420.html">20260610_0420</a>
+<a href="archive/20260609_0433.html">20260609_0433</a>
+<a href="archive/20260608_0346.html">20260608_0346</a>
+<a href="archive/20260607_0345.html">20260607_0345</a>
+<a href="archive/20260606_0408.html">20260606_0408</a>
+<a href="archive/20260604_0528.html">20260604_0528</a>
+<a href="archive/20260603_0524.html">20260603_0524</a>
+<a href="archive/20260602_0545.html">20260602_0545</a>
+<a href="archive/20260601_0332.html">20260601_0332</a>
+<a href="archive/20260531_0341.html">20260531_0341</a>
+<a href="archive/20260530_0440.html">20260530_0440</a>
+<a href="archive/20260529_0438.html">20260529_0438</a>
+<a href="archive/20260528_0431.html">20260528_0431</a>
+<a href="archive/20260527_0427.html">20260527_0427</a>
+<a href="archive/20260526_0357.html">20260526_0357</a>
+<a href="archive/20260525_0332.html">20260525_0332</a>
+<a href="archive/20260524_0329.html">20260524_0329</a>
+<a href="archive/20260523_0409.html">20260523_0409</a>
+<a href="archive/20260522_0408.html">20260522_0408</a>
+<a href="archive/20260521_0436.html">20260521_0436</a>
+<a href="archive/20260520_1610.html">20260520_1610</a>
+<a href="archive/20260519_1302.html">20260519_1302</a>
+<a href="archive/20260519_0400.html">20260519_0400</a>
+<a href="archive/20260519_0144.html">20260519_0144</a>
+<a href="archive/20260519_0127.html">20260519_0127</a>
+<a href="archive/20260519_0054.html">20260519_0054</a>
+<a href="archive/20260518_0409.html">20260518_0409</a>
+<a href="archive/20260517_0425.html">20260517_0425</a>
+<a href="archive/20260516_0436.html">20260516_0436</a>
+<a href="archive/20260515_0457.html">20260515_0457</a>
+<a href="archive/20260514_0507.html">20260514_0507</a>
+<a href="archive/20260513_0503.html">20260513_0503</a>
+<a href="archive/20260512_0505.html">20260512_0505</a>
+<a href="archive/20260511_0418.html">20260511_0418</a>
+<a href="archive/20260510_0414.html">20260510_0414</a>
+<a href="archive/20260509_0426.html">20260509_0426</a>
+<a href="archive/20260508_0435.html">20260508_0435</a>
+<a href="archive/20260507_0454.html">20260507_0454</a>
+<a href="archive/20260506_0427.html">20260506_0427</a>
+<a href="archive/20260505_0436.html">20260505_0436</a>
+<a href="archive/20260504_0410.html">20260504_0410</a>
+<a href="archive/20260503_0414.html">20260503_0414</a>
+<a href="archive/20260502_0426.html">20260502_0426</a>
+<a href="archive/20260501_0429.html">20260501_0429</a>
+<a href="archive/20260430_0430.html">20260430_0430</a>
+<a href="archive/20260429_0437.html">20260429_0437</a>
+<a href="archive/20260428_0429.html">20260428_0429</a>
+<a href="archive/20260427_0405.html">20260427_0405</a>
+<a href="archive/20260426_0404.html">20260426_0404</a>
+<a href="archive/20260425_0410.html">20260425_0410</a>
+<a href="archive/20260424_0430.html">20260424_0430</a>
+<a href="archive/20260423_0426.html">20260423_0426</a>
+<a href="archive/20260422_0424.html">20260422_0424</a>
+<a href="archive/20260421_0418.html">20260421_0418</a>
+<a href="archive/20260420_0359.html">20260420_0359</a>
+<a href="archive/20260419_0358.html">20260419_0358</a>
+<a href="archive/20260418_0415.html">20260418_0415</a>
+<a href="archive/20260417_0421.html">20260417_0421</a>
+<a href="archive/20260416_0425.html">20260416_0425</a>
+<a href="archive/20260415_0426.html">20260415_0426</a>
+<a href="archive/20260414_0423.html">20260414_0423</a>
+<a href="archive/20260413_0352.html">20260413_0352</a>
+<a href="archive/20260412_0347.html">20260412_0347</a>
+<a href="archive/20260411_0356.html">20260411_0356</a>
+<a href="archive/20260410_0412.html">20260410_0412</a>
+<a href="archive/20260409_0411.html">20260409_0411</a>
+<a href="archive/20260407_0404.html">20260407_0404</a>
+<a href="archive/20260406_0347.html">20260406_0347</a>
+<a href="archive/20260405_0344.html">20260405_0344</a>
+<a href="archive/20260404_0350.html">20260404_0350</a>
+<a href="archive/20260403_0400.html">20260403_0400</a>
+<a href="archive/20260401_0408.html">20260401_0408</a>
+<a href="archive/20260331_0407.html">20260331_0407</a>
+<a href="archive/20260329_0347.html">20260329_0347</a>
+<a href="archive/20260328_0350.html">20260328_0350</a>
+<a href="archive/20260326_0357.html">20260326_0357</a>
+<a href="archive/20260325_0405.html">20260325_0405</a>
+<a href="archive/20260324_0400.html">20260324_0400</a>
+<a href="archive/20260323_0342.html">20260323_0342</a>
+<a href="archive/20260322_0340.html">20260322_0340</a>
+<a href="archive/20260321_0347.html">20260321_0347</a>
+<a href="archive/20260320_0356.html">20260320_0356</a>
+<a href="archive/20260319_0358.html">20260319_0358</a>
+<a href="archive/20260318_0405.html">20260318_0405</a>
+<a href="archive/20260317_0401.html">20260317_0401</a>
+<a href="archive/20260316_0343.html">20260316_0343</a>
+<a href="archive/20260315_0341.html">20260315_0341</a>
+<a href="archive/20260314_0344.html">20260314_0344</a>
+<a href="archive/20260313_0352.html">20260313_0352</a>
+<a href="archive/20260312_0352.html">20260312_0352</a>
+<a href="archive/20260311_0347.html">20260311_0347</a>
+<a href="archive/20260310_0350.html">20260310_0350</a>
+<a href="archive/20260309_0338.html">20260309_0338</a>
+<a href="archive/20260308_0337.html">20260308_0337</a>
+<a href="archive/20260307_0347.html">20260307_0347</a>
+<a href="archive/20260306_0402.html">20260306_0402</a>
+<a href="archive/20260305_0348.html">20260305_0348</a>
+<a href="archive/20260304_0348.html">20260304_0348</a>
+<a href="archive/20260303_0348.html">20260303_0348</a>
+<a href="archive/20260302_0336.html">20260302_0336</a>
+<a href="archive/20260301_0339.html">20260301_0339</a>
+<a href="archive/20260228_0348.html">20260228_0348</a>
+<a href="archive/20260227_0354.html">20260227_0354</a>
+<a href="archive/20260226_0402.html">20260226_0402</a>
+<a href="archive/20260225_0404.html">20260225_0404</a>
+<a href="archive/20260224_0406.html">20260224_0406</a>
+<a href="archive/20260223_0338.html">20260223_0338</a>
+<a href="archive/20260222_0339.html">20260222_0339</a>
+<a href="archive/20260221_0345.html">20260221_0345</a>
+<a href="archive/20260220_0348.html">20260220_0348</a>
+<a href="archive/20260219_0358.html">20260219_0358</a>
+<a href="archive/20260218_0358.html">20260218_0358</a>
+<a href="archive/20260217_0343.html">20260217_0343</a>
+<a href="archive/20260216_0339.html">20260216_0339</a>
+<a href="archive/20260215_0338.html">20260215_0338</a>
+<a href="archive/20260213_0401.html">20260213_0401</a>
+<a href="archive/20260212_0404.html">20260212_0404</a>
+<a href="archive/20260210_0409.html">20260210_0409</a>
+<a href="archive/20260208_0339.html">20260208_0339</a>
+<a href="archive/20260207_0349.html">20260207_0349</a>
+<a href="archive/20260206_0347.html">20260206_0347</a>
+<a href="archive/20260205_0346.html">20260205_0346</a>
+<a href="archive/20260204_0354.html">20260204_0354</a>
+<a href="archive/20260202_0337.html">20260202_0337</a>
+<a href="archive/20260201_0333.html">20260201_0333</a>
+<a href="archive/20260131_0345.html">20260131_0345</a>
+<a href="archive/20260130_0341.html">20260130_0341</a>
+<a href="archive/20260129_0344.html">20260129_0344</a>
+<a href="archive/20260128_0341.html">20260128_0341</a>
+<a href="archive/20260127_0338.html">20260127_0338</a>
+<a href="archive/20260126_0330.html">20260126_0330</a>
+<a href="archive/20260125_0329.html">20260125_0329</a>
+<a href="archive/20260124_0337.html">20260124_0337</a>
+<a href="archive/20260123_0337.html">20260123_0337</a>
+<a href="archive/20260122_0343.html">20260122_0343</a>
+<a href="archive/20260121_0424.html">20260121_0424</a>
+<a href="archive/20260119_0329.html">20260119_0329</a>
+<a href="archive/20260118_0327.html">20260118_0327</a>
+<a href="archive/20260117_0332.html">20260117_0332</a>
+<a href="archive/20260116_0339.html">20260116_0339</a>
+<a href="archive/20260115_0334.html">20260115_0334</a>
+<a href="archive/20260114_0333.html">20260114_0333</a>
+<a href="archive/20260113_0334.html">20260113_0334</a>
+<a href="archive/20260112_0331.html">20260112_0331</a>
+<a href="archive/20260111_0329.html">20260111_0329</a>
+<a href="archive/20260110_0333.html">20260110_0333</a>
+<a href="archive/20260109_0334.html">20260109_0334</a>
+<a href="archive/20260108_0335.html">20260108_0335</a>
+<a href="archive/20260107_0330.html">20260107_0330</a>
+<a href="archive/20260106_0336.html">20260106_0336</a>
+<a href="archive/20260105_0328.html">20260105_0328</a>
+<a href="archive/20260104_0328.html">20260104_0328</a>
+<a href="archive/20260103_0325.html">20260103_0325</a>
+<a href="archive/20260102_0339.html">20260102_0339</a>
+<a href="archive/20260101_0329.html">20260101_0329</a>
+<a href="archive/20251231_0333.html">20251231_0333</a>
+<a href="archive/20251230_0332.html">20251230_0332</a>
+<a href="archive/20251229_0329.html">20251229_0329</a>
+<a href="archive/20251228_0332.html">20251228_0332</a>
+<a href="archive/20251227_0329.html">20251227_0329</a>
+<a href="archive/20251226_0330.html">20251226_0330</a>
+<a href="archive/20251225_0329.html">20251225_0329</a>
+<a href="archive/20251224_0331.html">20251224_0331</a>
+<a href="archive/20251223_0332.html">20251223_0332</a>
+<a href="archive/20251222_0328.html">20251222_0328</a>
+<a href="archive/20251221_0329.html">20251221_0329</a>
+<a href="archive/20251220_0330.html">20251220_0330</a>
+<a href="archive/20251219_0330.html">20251219_0330</a>
+<a href="archive/20251218_0345.html">20251218_0345</a>
+<a href="archive/20251217_0332.html">20251217_0332</a>
+<a href="archive/20251216_0333.html">20251216_0333</a>
+<a href="archive/20251215_0333.html">20251215_0333</a>
+<a href="archive/20251214_0327.html">20251214_0327</a>
+<a href="archive/20251212_0333.html">20251212_0333</a>
+<a href="archive/20251211_0331.html">20251211_0331</a>
+<a href="archive/20251210_0332.html">20251210_0332</a>
+<a href="archive/20251209_0331.html">20251209_0331</a>
+<a href="archive/20251208_0328.html">20251208_0328</a>
+<a href="archive/20251207_0327.html">20251207_0327</a>
+<a href="archive/20251206_0330.html">20251206_0330</a>
+<a href="archive/20251205_0331.html">20251205_0331</a>
+<a href="archive/20251204_0331.html">20251204_0331</a>
+<a href="archive/20251203_0333.html">20251203_0333</a>
+<a href="archive/20251202_0335.html">20251202_0335</a>
+<a href="archive/20251201_0328.html">20251201_0328</a>
+<a href="archive/20251130_0327.html">20251130_0327</a>
+<a href="archive/20251129_0328.html">20251129_0328</a>
+<a href="archive/20251128_0327.html">20251128_0327</a>
+<a href="archive/20251127_0327.html">20251127_0327</a>
+<a href="archive/20251126_0329.html">20251126_0329</a>
+<a href="archive/20251125_0327.html">20251125_0327</a>
+<a href="archive/20251124_0327.html">20251124_0327</a>
+<a href="archive/20251123_0326.html">20251123_0326</a>
+<a href="archive/20251122_0328.html">20251122_0328</a>
+<a href="archive/20251121_0328.html">20251121_0328</a>
+<a href="archive/20251120_0329.html">20251120_0329</a>
+<a href="archive/20251119_0328.html">20251119_0328</a>
+<a href="archive/20251118_0328.html">20251118_0328</a>
+<a href="archive/20251117_0326.html">20251117_0326</a>
+<a href="archive/20251116_0325.html">20251116_0325</a>
+<a href="archive/20251115_0327.html">20251115_0327</a>
+<a href="archive/20251114_0328.html">20251114_0328</a>
+<a href="archive/20251113_0330.html">20251113_0330</a>
+<a href="archive/20251112_0329.html">20251112_0329</a>
+<a href="archive/20251111_0328.html">20251111_0328</a>
+<a href="archive/20251110_0325.html">20251110_0325</a>
+<a href="archive/20251109_0326.html">20251109_0326</a>
+<a href="archive/20251108_0328.html">20251108_0328</a>
+<a href="archive/20251107_0328.html">20251107_0328</a>
+<a href="archive/20251106_0329.html">20251106_0329</a>
+<a href="archive/20251105_0326.html">20251105_0326</a>
+<a href="archive/20251104_0327.html">20251104_0327</a>
+<a href="archive/20251103_0324.html">20251103_0324</a>
+<a href="archive/20251102_0326.html">20251102_0326</a>
+<a href="archive/20251101_0324.html">20251101_0324</a>
+<a href="archive/20251031_0328.html">20251031_0328</a>
+<a href="archive/20251030_0330.html">20251030_0330</a>
+<a href="archive/20251029_0329.html">20251029_0329</a>
+<a href="archive/20251028_0329.html">20251028_0329</a>
+<a href="archive/20251027_0322.html">20251027_0322</a>
+<a href="archive/20251026_0327.html">20251026_0327</a>
+<a href="archive/20251025_0331.html">20251025_0331</a>
+<a href="archive/20251024_0329.html">20251024_0329</a>
+<a href="archive/20251023_0329.html">20251023_0329</a>
+<a href="archive/20251022_0330.html">20251022_0330</a>
+<a href="archive/20251021_0331.html">20251021_0331</a>
+<a href="archive/20251020_0328.html">20251020_0328</a>
+<a href="archive/20251019_0321.html">20251019_0321</a>
+<a href="archive/20251018_0327.html">20251018_0327</a>
+<a href="archive/20251017_0320.html">20251017_0320</a>
+<a href="archive/20251016_0328.html">20251016_0328</a>
+<a href="archive/20251015_0328.html">20251015_0328</a>
+<a href="archive/20251014_0323.html">20251014_0323</a>
+<a href="archive/20251011_0328.html">20251011_0328</a>
+<a href="archive/20251010_0330.html">20251010_0330</a>
+<a href="archive/20251009_0321.html">20251009_0321</a>
+<a href="archive/20251008_0343.html">20251008_0343</a>
+<a href="archive/20251007_0353.html">20251007_0353</a>
+<a href="archive/20251006_0325.html">20251006_0325</a>
+<a href="archive/20251005_0350.html">20251005_0350</a>
+<a href="archive/20251004_0352.html">20251004_0352</a>
+<a href="archive/20251003_0352.html">20251003_0352</a>
+<a href="archive/20251002_0356.html">20251002_0356</a>
+<a href="archive/20251001_0321.html">20251001_0321</a>
+<a href="archive/20250925_0335.html">20250925_0335</a>
+<a href="archive/20250924_0350.html">20250924_0350</a>
+<a href="archive/20250923_0348.html">20250923_0348</a>
+<a href="archive/20250922_0346.html">20250922_0346</a>
+<a href="archive/20250921_0345.html">20250921_0345</a>
+<a href="archive/20250920_0342.html">20250920_0342</a>
+<a href="archive/20250919_0346.html">20250919_0346</a>
+<a href="archive/20250918_0342.html">20250918_0342</a>
+<a href="archive/20250917_0336.html">20250917_0336</a>
+<a href="archive/20250916_0333.html">20250916_0333</a>
+<a href="archive/20250915_0333.html">20250915_0333</a>
+<a href="archive/20250914_0328.html">20250914_0328</a>
+<a href="archive/20250913_0322.html">20250913_0322</a>
+<a href="archive/20250912_0335.html">20250912_0335</a>
+<a href="archive/20250911_0337.html">20250911_0337</a>
+<a href="archive/20250910_0338.html">20250910_0338</a>
+<a href="archive/20250909_0341.html">20250909_0341</a>
+<a href="archive/20250908_0342.html">20250908_0342</a>
+<a href="archive/20250907_0333.html">20250907_0333</a>
+<a href="archive/20250906_0350.html">20250906_0350</a>
+<a href="archive/20250905_0319.html">20250905_0319</a>
+<a href="archive/20250904_0323.html">20250904_0323</a>
+<a href="archive/20250903_0355.html">20250903_0355</a>
+<a href="archive/20250902_0325.html">20250902_0325</a>
+<a href="archive/20250901_0355.html">20250901_0355</a>
+<a href="archive/20250831_0355.html">20250831_0355</a>
+<a href="archive/20250830_0356.html">20250830_0356</a>
+<a href="archive/20250829_0355.html">20250829_0355</a>
+<a href="archive/20250828_0333.html">20250828_0333</a>
+<a href="archive/20250827_1654.html">20250827_1654</a>
+<a href="archive/20250827_1602.html">20250827_1602</a>
+<a href="archive/20250827_1557.html">20250827_1557</a>
+<a href="archive/20250827_0320.html">20250827_0320</a>
+<a href="archive/20250826_0320.html">20250826_0320</a>
+<a href="archive/20250825_1752.html">20250825_1752</a>
+<a href="archive/20250825_1709.html">20250825_1709</a>
+<a href="archive/20250825_1652.html">20250825_1652</a>
+<a href="archive/20250825_1647.html">20250825_1647</a>
+<a href="archive/20250825_1645.html">20250825_1645</a>
+<a href="archive/20250825_1631.html">20250825_1631</a>
+<a href="archive/20250825_1606.html">20250825_1606</a>
+<a href="archive/20250825_1559.html">20250825_1559</a>
+<a href="archive/20250825_1558.html">20250825_1558</a>
+<a href="archive/20250825_1556.html">20250825_1556</a>
+<a href="archive/20250825_1531.html">20250825_1531</a>
+<a href="archive/20250825_1525.html">20250825_1525</a>
+<a href="archive/20250825_1516.html">20250825_1516</a>
+<a href="archive/20250825_1450.html">20250825_1450</a>
+<a href="archive/20250825_1444.html">20250825_1444</a>
+<a href="archive/20250825_1438.html">20250825_1438</a>
+<a href="archive/20250825_1414.html">20250825_1414</a>
+<a href="archive/20250825_1413.html">20250825_1413</a>
+<a href="archive/20250825_1410.html">20250825_1410</a>
+<a href="archive/20250825_1408.html">20250825_1408</a>
+<a href="archive/20250825_1405.html">20250825_1405</a>
+<a href="archive/20250825_1401.html">20250825_1401</a>
+<a href="archive/20250825_1355.html">20250825_1355</a>
+<a href="archive/20250825_1347.html">20250825_1347</a>
+<a href="archive/20250825_1345.html">20250825_1345</a>
+<a href="archive/20250825_1344.html">20250825_1344</a>
+<a href="archive/20250825_1343.html">20250825_1343</a>
+<a href="archive/20250825_1340.html">20250825_1340</a>
+<a href="archive/20250825_1339.html">20250825_1339</a>
+<a href="archive/20250825_1333.html">20250825_1333</a>
+<a href="archive/20250825_1323.html">20250825_1323</a>
+<a href="archive/20250825_1317.html">20250825_1317</a>
+<a href="archive/20250825_1243.html">20250825_1243</a>
+<a href="archive/20250824_0342.html">20250824_0342</a>
+<a href="archive/20250823_0343.html">20250823_0343</a>
+<a href="archive/20250823_0142.html">20250823_0142</a>
+<a href="archive/20250822_2331.html">20250822_2331</a>
+<a href="archive/20250822_2308.html">20250822_2308</a>
+<a href="archive/20250822_2258.html">20250822_2258</a>
+<a href="archive/20250822_2241.html">20250822_2241</a>
+<a href="archive/20250822_2228.html">20250822_2228</a>
+<a href="archive/20250822_2206.html">20250822_2206</a>
+<a href="archive/20250822_2147.html">20250822_2147</a>
+<a href="archive/20250822_2111.html">20250822_2111</a>
+<a href="archive/20250822_1259.html">20250822_1259</a>
+<a href="archive/20250822_1233.html">20250822_1233</a>
+<a href="archive/20250822_1229.html">20250822_1229</a>
+<a href="archive/20250822_1223.html">20250822_1223</a>
+<a href="archive/20250822_1210.html">20250822_1210</a>
+<a href="archive/20250822_1201.html">20250822_1201</a>
+<a href="archive/20250822_1111.html">20250822_1111</a>
+<a href="archive/20250822_1058.html">20250822_1058</a>
+<a href="archive/20250822_1052.html">20250822_1052</a>
+<a href="archive/20250822_1045.html">20250822_1045</a>
+<a href="archive/20250822_0657.html">20250822_0657</a>
+<a href="archive/20250822_0553.html">20250822_0553</a></div>
+    </details>
+    <div class="footer">Generated by arxiv-tracker</div>
+  </div>
+</body></html>
